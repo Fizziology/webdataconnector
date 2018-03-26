@@ -9,7 +9,7 @@
 	var myConnector = tableau.makeConnector();
 
 	myConnector.getSchema = function (schemaCallback) {
-		//tableau.log("Hello WDC!");
+		tableau.log("Hello WDC!");
 		var cols = [{
 			id: "id",
 			dataType: tableau.dataTypeEnum.string
@@ -94,7 +94,7 @@
 	};
 
 	myConnector.getData = function (table, doneCallback) {
-		//tableau.log("getData");
+		tableau.log("getData");
     $.ajaxSetup({
       headers : {
         'Authorization' : "Basic " + tableau.username
@@ -138,7 +138,7 @@
 
 	$(document).ready(function () {
 		$("#submitButton").click(function () {
-      //tableau.log("submitButton function");
+      tableau.log("submitButton function");
 			tableau.connectionName = "Fizz Centrifuge Feed";
       var email = $('#email')[0].value;
       var token = $('#token')[0].value;
