@@ -101,7 +101,7 @@
       }
     });
 		//$.getJSON("http://localhost:3030/api/tableau/properties", function(resp) {
-		$.getJSON("http://centrifuge.com/api/tableau/properties", function(resp) {
+		$.getJSON("https://centrifuge.fizziology.com/api/tableau/properties", function(resp) {
 			var properties = resp.properties,
 				tableData = [];
 
