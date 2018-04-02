@@ -19,7 +19,7 @@
 			dataType: tableau.dataTypeEnum.string
 		}, {
 			id: "vanity_title",
-			alias: "Actual Title",
+			alias: "Vanity Title",
 			dataType: tableau.dataTypeEnum.string
 		}, {
 			id: "tag",
