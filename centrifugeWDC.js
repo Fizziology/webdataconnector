@@ -10,7 +10,8 @@
 
 	myConnector.getSchema = function (schemaCallback) {
 		tableau.log("Hello WDC!");
-		var cols = [{
+
+		var property_cols = [{
 			id: "id",
 			dataType: tableau.dataTypeEnum.string
 		}, {
@@ -83,50 +84,135 @@
 			dataType: tableau.dataTypeEnum.string
 		}];
 
-		var tableSchema = {
-			id: "centrifugeFeed",
+		var propertyTable = {
+			id: "centrifugeProperties",
 			alias: "Property information from Centrifuge",
-			columns: cols
+			columns: property_cols
 		};
 
-		schemaCallback([tableSchema]);
+    var genre_cols = [{
+			id: "title",
+			alias: "title",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "category",
+			alias: "category",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "id",
+			dataType: tableau.dataTypeEnum.string
+    }];
+
+		var genreTable = {
+			id: "centrifugeGenres",
+			alias: "Genre information from Centrifuge",
+			columns: genre_cols
+		};
+
+    var properties_genres_cols = [{
+			id: "property_id",
+			alias: "property_id",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "genre_id",
+			alias: "genre_id",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "id",
+			dataType: tableau.dataTypeEnum.string
+    }];
+
+		var propertiesGenresTable = {
+			id: "centrifugePropertiesGenres",
+			alias: "PropertiesGenres join table information from Centrifuge",
+			columns: properties_genres_cols
+		};
+
+		schemaCallback([propertyTable, genreTable, propertiesGenresTable]);
 
 	};
 
 	myConnector.getData = function (table, doneCallback) {
 		tableau.log("getData");
+    tableau.log(table.tableInfo.id);
+
     $.ajaxSetup({
       headers : {
         'Authorization' : "Basic " + tableau.username
       }
     });
-		//$.getJSON("http://localhost:3030/api/tableau/properties", function(resp) {
-		$.getJSON("https://centrifuge.fizziology.com/api/tableau/properties", function(resp) {
-			var properties = resp.properties,
-				tableData = [];
 
-			// Iterate over the JSON object
-			for (var i = 0, len = properties.length; i < len; i++) {
-				tableData.push({
-					"id": properties[i].id,
-					"title": properties[i].title,
-					"vanity_title": properties[i].vanity_title,
-					"tag": properties[i].tag,
-					"active": properties[i].active,
-					"release_date": properties[i].release_date,
-					"box_office_opening": properties[i].box_office_opening,
-					"distributor": properties[i].distributor,
-					"rating": properties[i].rating,
-					"franchise": properties[i].franchise,
-					"installment": properties[i].installment,
-					"cast": properties[i].cast,
-					"adaptation": properties[i].adaptation,
-					"cinephile": properties[i].cinephile,
-					"oscar_nominee": properties[i].oscar_nominee,
-					"cinema_score_letter": properties[i].cinema_score_letter,
-					"cinema_score_number": properties[i].cinema_score_number,
-					"tracker_title": properties[i].tracker_title
-				});
+    //the WDC API calls the getData function once for each schema
+    //Here we select which url to use for each schema
+
+    var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
+    //var endpointUrl = "http://localhost:3030/api/tableau/"
+    if (table.tableInfo.id == "centrifugeProperties") {
+      endpointUrl = endpointUrl + "properties"
+    } else if (table.tableInfo.id == "centrifugeGenres") {
+      endpointUrl = endpointUrl + "genres"
+    } else if (table.tableInfo.id == "centrifugePropertiesGenres") {
+      endpointUrl = endpointUrl + "properties_genres"
+    }
+    tableau.log(endpointUrl);
+
+		$.getJSON(endpointUrl, function(resp) {
+			var tableData = [];
+      var i = 0;
+
+			// Iterate over each JSON object
+      if (table.tableInfo.id == "centrigugeGenres") {
+        tableau.log("genres response: ");
+        tableau.log(resp);
+			  var genres = resp.genres;
+        for (i = 0, len = genres.length; i < len; i++) {
+          tableData.push({
+            "id": genres[i].id,
+            "title": genres[i].title,
+            "category": genres[i].category
+          });
+        }
+      }
+
+      if (table.tableInfo.id == "centrifugePropertiesGenres") {
+        tableau.log("join response: ");
+        tableau.log(resp);
+			  var propertiesGenres = resp.properties_genres;
+        for (i = 0, len = propertiesGenres.length; i < len; i++) {
+          tableData.push({
+            "id": propertiesGenres[i].id,
+            "genre_id": propertiesGenres[i].genre_id,
+            "property_id": propertiesGenres[i].property_id
+          });
+        }
+      }
+
+      if (table.tableInfo.id == "centrifugeProperties") {
+        tableau.log("properties response: ");
+        tableau.log(resp);
+			  var properties = resp.properties;
+        for (i = 0, len = properties.length; i < len; i++) {
+          tableData.push({
+            "id": properties[i].id,
+            "title": properties[i].title,
+            "vanity_title": properties[i].vanity_title,
+            "tag": properties[i].tag,
+            "active": properties[i].active,
+            "release_date": properties[i].release_date,
+            "box_office_opening": properties[i].box_office_opening,
+            "distributor": properties[i].distributor,
+            "rating": properties[i].rating,
+            "franchise": properties[i].franchise,
+            "installment": properties[i].installment,
+            "cast": properties[i].cast,
+            "adaptation": properties[i].adaptation,
+            "cinephile": properties[i].cinephile,
+            "oscar_nominee": properties[i].oscar_nominee,
+            "cinema_score_letter": properties[i].cinema_score_letter,
+            "cinema_score_number": properties[i].cinema_score_number,
+            "tracker_title": properties[i].tracker_title
+          });
+        }
 			}
 
 			table.appendRows(tableData);
