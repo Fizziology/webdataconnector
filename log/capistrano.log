@@ -124,3 +124,493 @@ remote: Total 6 (delta 3), reused 4 (delta 3), pack-reused 0[K
 [90m└──────────────────┴──────┴────────┴───┴─────┴───────────┘[39m
 [37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
   INFO [27b35b13] Finished in 1.239 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-03-27 12:43:25 -0500 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [176d8600] Running /usr/bin/env mkdir -p /tmp on 52.91.163.132
+ DEBUG [176d8600] Command: /usr/bin/env mkdir -p /tmp
+  INFO [176d8600] Finished in 1.107 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 0.0%
+  INFO Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 100.0%
+  INFO [6676a68f] Running /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh on 52.91.163.132
+ DEBUG [6676a68f] Command: /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh
+  INFO [6676a68f] Finished in 0.553 seconds with exit status 0 (successful).
+  INFO [5526f351] Running /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD on 52.91.163.132
+ DEBUG [5526f351] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD )
+ DEBUG [5526f351] 	e26d92c3b9d60fdb2c77ff811afcaf4e1d31c4df	HEAD
+  INFO [5526f351] Finished in 0.706 seconds with exit status 0 (successful).
+  INFO [4b83d9b1] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases on 52.91.163.132
+ DEBUG [4b83d9b1] Command: /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases
+  INFO [4b83d9b1] Finished in 0.570 seconds with exit status 0 (successful).
+ DEBUG [26808df0] Running [ -f /home/deploy/webdataconnector/current/REVISION ] on 52.91.163.132
+ DEBUG [26808df0] Command: [ -f /home/deploy/webdataconnector/current/REVISION ]
+ DEBUG [26808df0] Finished in 0.549 seconds with exit status 0 (successful).
+ DEBUG [0d9e39b3] Running /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null on 52.91.163.132
+ DEBUG [0d9e39b3] Command: /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null
+ DEBUG [0d9e39b3] 	c842421e4fccb32504a8af2a13441a449c486f2e
+ DEBUG [0d9e39b3] Finished in 0.561 seconds with exit status 0 (successful).
+  INFO [d0b84d3a] Running cd /home/deploy/webdataconnector/current && pm2 kill on 52.91.163.132
+ DEBUG [d0b84d3a] Command: cd /home/deploy/webdataconnector/current && pm2 kill
+ DEBUG [d0b84d3a] 	[32m[PM2] [39mStopping PM2...
+ DEBUG [d0b84d3a] 	[32m[PM2] [39mApplying action deleteProcessId on app [all](ids: 0)
+ DEBUG [d0b84d3a] 	[32m[PM2] [39m[webdataconnector](0) ✓
+[32m[PM2] [39mAll processes have been stopped and deleted
+ DEBUG [d0b84d3a] 	[32m[PM2] [39mPM2 stopped
+  INFO [d0b84d3a] Finished in 1.069 seconds with exit status 0 (successful).
+ DEBUG [8c40fd87] Running [ -f /home/deploy/webdataconnector/repo/HEAD ] on 52.91.163.132
+ DEBUG [8c40fd87] Command: [ -f /home/deploy/webdataconnector/repo/HEAD ]
+ DEBUG [8c40fd87] Finished in 0.559 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/deploy/webdataconnector/repo
+ DEBUG [92dd0330] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [92dd0330] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [92dd0330] Finished in 0.552 seconds with exit status 0 (successful).
+  INFO [e7501e4a] Running /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git on 52.91.163.132
+ DEBUG [e7501e4a] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git )
+  INFO [e7501e4a] Finished in 0.560 seconds with exit status 0 (successful).
+  INFO [598f975f] Running /usr/bin/env git remote update --prune on 52.91.163.132
+ DEBUG [598f975f] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [598f975f] 	Fetching origin
+ DEBUG [598f975f] 	remote: Counting objects: 6, done.[K
+remote: Compressing objects:  50% (1/2)   [Kremote: Compressing objects: 100% (2/2)   [Kremote: Compressing objects: 100% (2/2), done.[K
+remote: Total 6 (delta 2), reused 6 (delta 2), pack-reused 0[K
+ DEBUG [598f975f] 	Unpacking objects:  16% (1/6)   Unpacking objects:  33% (2/6)   Unpacking objects:  50% (3/6)   Unpacking objects:  66% (4/6)   Unpacking objects:  83% (5/6)   Unpacking objects: 100% (6/6)   Unpacking objects: 100% (6/6), done.
+ DEBUG [598f975f] 	From github.com:Fizziology/webdataconnector
+   c842421..e26d92c  master     -> master
+  INFO [598f975f] Finished in 0.882 seconds with exit status 0 (successful).
+ DEBUG [30c780e5] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [30c780e5] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [30c780e5] Finished in 0.554 seconds with exit status 0 (successful).
+  INFO [de05c4fc] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20180327174332 on 52.91.163.132
+ DEBUG [de05c4fc] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20180327174332 )
+  INFO [de05c4fc] Finished in 0.553 seconds with exit status 0 (successful).
+  INFO [9629cadc] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20180327174332 on 52.91.163.132
+ DEBUG [9629cadc] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20180327174332 )
+  INFO [9629cadc] Finished in 0.624 seconds with exit status 0 (successful).
+ DEBUG [96fe1e62] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [96fe1e62] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [96fe1e62] Finished in 0.551 seconds with exit status 0 (successful).
+ DEBUG [d903bec2] Running /usr/bin/env git rev-list --max-count=1 master on 52.91.163.132
+ DEBUG [d903bec2] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [d903bec2] 	e26d92c3b9d60fdb2c77ff811afcaf4e1d31c4df
+ DEBUG [d903bec2] Finished in 0.557 seconds with exit status 0 (successful).
+ DEBUG [0bd21a80] Running if test ! -d /home/deploy/webdataconnector/releases/20180327174332; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180327174332'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [0bd21a80] Command: if test ! -d /home/deploy/webdataconnector/releases/20180327174332; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180327174332'" 1>&2; false; fi
+ DEBUG [0bd21a80] Finished in 0.554 seconds with exit status 0 (successful).
+  INFO [ce7778fb] Running /usr/bin/env echo "e26d92c3b9d60fdb2c77ff811afcaf4e1d31c4df" >> REVISION on 52.91.163.132
+ DEBUG [ce7778fb] Command: cd /home/deploy/webdataconnector/releases/20180327174332 && /usr/bin/env echo "e26d92c3b9d60fdb2c77ff811afcaf4e1d31c4df" >> REVISION
+  INFO [ce7778fb] Finished in 0.558 seconds with exit status 0 (successful).
+ DEBUG [0f15bc13] Running if test ! -d /home/deploy/webdataconnector/releases/20180327174332; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180327174332'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [0f15bc13] Command: if test ! -d /home/deploy/webdataconnector/releases/20180327174332; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180327174332'" 1>&2; false; fi
+ DEBUG [0f15bc13] Finished in 0.573 seconds with exit status 0 (successful).
+  INFO [9435b351] Running /usr/bin/env npm install --production --silent --no-progress on 52.91.163.132
+ DEBUG [9435b351] Command: cd /home/deploy/webdataconnector/releases/20180327174332 && /usr/bin/env npm install --production --silent --no-progress
+ DEBUG [9435b351] 	added 149 packages in 2.016s
+  INFO [9435b351] Finished in 3.027 seconds with exit status 0 (successful).
+  INFO [f4fb882c] Running /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20180327174332 /home/deploy/webdataconnector/releases/current on 52.91.163.132
+ DEBUG [f4fb882c] Command: /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20180327174332 /home/deploy/webdataconnector/releases/current
+  INFO [f4fb882c] Finished in 0.558 seconds with exit status 0 (successful).
+  INFO [528f595f] Running /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector on 52.91.163.132
+ DEBUG [528f595f] Command: /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector
+  INFO [528f595f] Finished in 0.557 seconds with exit status 0 (successful).
+ DEBUG [c489520c] Running /usr/bin/env ls -x /home/deploy/webdataconnector/releases on 52.91.163.132
+ DEBUG [c489520c] Command: /usr/bin/env ls -x /home/deploy/webdataconnector/releases
+ DEBUG [c489520c] 	20180313164057	20180313165950	20180313182909	20180326185013	20180327174332
+ DEBUG [c489520c] Finished in 0.563 seconds with exit status 0 (successful).
+  INFO Keeping 4 of 5 deployed releases on 52.91.163.132
+ DEBUG [209a9db3] Running [ -d /home/deploy/webdataconnector/current ] on 52.91.163.132
+ DEBUG [209a9db3] Command: [ -d /home/deploy/webdataconnector/current ]
+ DEBUG [209a9db3] Finished in 0.557 seconds with exit status 0 (successful).
+ DEBUG [a6b1d490] Running /usr/bin/env readlink /home/deploy/webdataconnector/current on 52.91.163.132
+ DEBUG [a6b1d490] Command: /usr/bin/env readlink /home/deploy/webdataconnector/current
+ DEBUG [a6b1d490] 	/home/deploy/webdataconnector/releases/20180327174332
+ DEBUG [a6b1d490] Finished in 0.580 seconds with exit status 0 (successful).
+  INFO [010a11bc] Running /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20180313164057 on 52.91.163.132
+ DEBUG [010a11bc] Command: /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20180313164057
+  INFO [010a11bc] Finished in 0.790 seconds with exit status 0 (successful).
+ DEBUG [226dab50] Running if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [226dab50] Command: if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi
+ DEBUG [226dab50] Finished in 0.568 seconds with exit status 0 (successful).
+  INFO [da4769c3] Running /usr/bin/env echo "Branch master (at e26d92c3b9d60fdb2c77ff811afcaf4e1d31c4df) deployed as release 20180327174332 by cheryl" >> /home/deploy/webdataconnector/revisions.log on 52.91.163.132
+ DEBUG [da4769c3] Command: cd /home/deploy/webdataconnector/releases && /usr/bin/env echo "Branch master (at e26d92c3b9d60fdb2c77ff811afcaf4e1d31c4df) deployed as release 20180327174332 by cheryl" >> /home/deploy/webdataconnector/revisions.log
+  INFO [da4769c3] Finished in 0.572 seconds with exit status 0 (successful).
+  INFO [53796fe0] Running cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start on 52.91.163.132
+ DEBUG [53796fe0] Command: cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start
+ DEBUG [53796fe0] 	[32m[PM2] [39mSpawning PM2 daemon with pm2_home=/home/deploy/.pm2
+ DEBUG [53796fe0] 	[32m[PM2] [39mPM2 Successfully daemonized
+ DEBUG [53796fe0] 	[32m[PM2] [39mStarting /home/deploy/.nvm/versions/node/v9.8.0/bin/npm in fork_mode (1 instance)
+ DEBUG [53796fe0] 	[32m[PM2] [39mDone.
+ DEBUG [53796fe0] 	[90m┌──────────────────┬──────┬────────┬───┬─────┬───────────┐[39m
+[90m│[39m[1m[36m Name             [39m[22m[90m│[39m[1m[36m mode [39m[22m[90m│[39m[1m[36m status [39m[22m[90m│[39m[1m[36m ↺ [39m[22m[90m│[39m[1m[36m cpu [39m[22m[90m│[39m[1m[36m memory    [39m[22m[90m│[39m
+[90m├──────────────────┼──────┼────────┼───┼─────┼───────────┤[39m
+[90m│[39m[1m[36m [1m[36mwebdataconnector[36m[1m [39m[22m[90m│[39m [7m[1mfork[22m[27m [90m│[39m [32m[1monline[22m[39m [90m│[39m 0 [90m│[39m 1%  [90m│[39m 11.8 MB   [90m│[39m
+[90m└──────────────────┴──────┴────────┴───┴─────┴───────────┘[39m
+[37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
+  INFO [53796fe0] Finished in 1.345 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-04-02 13:24:51 -0500 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [998261b6] Running /usr/bin/env mkdir -p /tmp on 52.91.163.132
+ DEBUG [998261b6] Command: /usr/bin/env mkdir -p /tmp
+  INFO [998261b6] Finished in 2.596 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 0.0%
+  INFO Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 100.0%
+  INFO [56db36df] Running /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh on 52.91.163.132
+ DEBUG [56db36df] Command: /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh
+  INFO [56db36df] Finished in 0.609 seconds with exit status 0 (successful).
+  INFO [4d4edf75] Running /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD on 52.91.163.132
+ DEBUG [4d4edf75] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD )
+ DEBUG [4d4edf75] 	e5ff95bdd32ab53b153841639f9f6932a7c30040	HEAD
+  INFO [4d4edf75] Finished in 1.190 seconds with exit status 0 (successful).
+  INFO [c9b52383] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases on 52.91.163.132
+ DEBUG [c9b52383] Command: /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases
+  INFO [c9b52383] Finished in 0.806 seconds with exit status 0 (successful).
+ DEBUG [ce82669f] Running [ -f /home/deploy/webdataconnector/current/REVISION ] on 52.91.163.132
+ DEBUG [ce82669f] Command: [ -f /home/deploy/webdataconnector/current/REVISION ]
+ DEBUG [ce82669f] Finished in 1.023 seconds with exit status 0 (successful).
+ DEBUG [fdecaac2] Running /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null on 52.91.163.132
+ DEBUG [fdecaac2] Command: /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null
+ DEBUG [fdecaac2] 	e26d92c3b9d60fdb2c77ff811afcaf4e1d31c4df
+ DEBUG [fdecaac2] Finished in 1.071 seconds with exit status 0 (successful).
+  INFO [11769e74] Running cd /home/deploy/webdataconnector/current && pm2 kill on 52.91.163.132
+ DEBUG [11769e74] Command: cd /home/deploy/webdataconnector/current && pm2 kill
+ DEBUG [11769e74] 	[32m[PM2] [39mStopping PM2...
+ DEBUG [11769e74] 	[32m[PM2] [39mApplying action deleteProcessId on app [all](ids: 0)
+ DEBUG [11769e74] 	[32m[PM2] [39m[webdataconnector](0) ✓
+[32m[PM2] [39mAll processes have been stopped and deleted
+ DEBUG [11769e74] 	[32m[PM2] [39mPM2 stopped
+  INFO [11769e74] Finished in 1.326 seconds with exit status 0 (successful).
+ DEBUG [49eaa3a6] Running [ -f /home/deploy/webdataconnector/repo/HEAD ] on 52.91.163.132
+ DEBUG [49eaa3a6] Command: [ -f /home/deploy/webdataconnector/repo/HEAD ]
+ DEBUG [49eaa3a6] Finished in 0.776 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/deploy/webdataconnector/repo
+ DEBUG [4d895a52] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [4d895a52] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [4d895a52] Finished in 0.612 seconds with exit status 0 (successful).
+  INFO [0490c777] Running /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git on 52.91.163.132
+ DEBUG [0490c777] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git )
+  INFO [0490c777] Finished in 1.208 seconds with exit status 0 (successful).
+  INFO [d4170a34] Running /usr/bin/env git remote update --prune on 52.91.163.132
+ DEBUG [d4170a34] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [d4170a34] 	Fetching origin
+ DEBUG [d4170a34] 	remote: Counting objects: 3, done.[K
+ DEBUG [d4170a34] 	remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0[K
+ DEBUG [d4170a34] 	Unpacking objects:  33% (1/3)   
+ DEBUG [d4170a34] 	Unpacking objects:  66% (2/3)   
+ DEBUG [d4170a34] 	Unpacking objects: 100% (3/3)   Unpacking objects: 100% (3/3), done.
+ DEBUG [d4170a34] 	From github.com:Fizziology/webdataconnector
+   e26d92c..e5ff95b  master     -> master
+  INFO [d4170a34] Finished in 3.127 seconds with exit status 0 (successful).
+ DEBUG [ef69901d] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [ef69901d] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [ef69901d] Finished in 0.628 seconds with exit status 0 (successful).
+  INFO [8cb5e498] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20180402182502 on 52.91.163.132
+ DEBUG [8cb5e498] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20180402182502 )
+  INFO [8cb5e498] Finished in 0.869 seconds with exit status 0 (successful).
+  INFO [68c9d7d7] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20180402182502 on 52.91.163.132
+ DEBUG [68c9d7d7] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20180402182502 )
+  INFO [68c9d7d7] Finished in 0.919 seconds with exit status 0 (successful).
+ DEBUG [d92dd255] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [d92dd255] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [d92dd255] Finished in 1.229 seconds with exit status 0 (successful).
+ DEBUG [c2b677b8] Running /usr/bin/env git rev-list --max-count=1 master on 52.91.163.132
+ DEBUG [c2b677b8] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [c2b677b8] 	e5ff95bdd32ab53b153841639f9f6932a7c30040
+ DEBUG [c2b677b8] Finished in 0.797 seconds with exit status 0 (successful).
+ DEBUG [6ca45662] Running if test ! -d /home/deploy/webdataconnector/releases/20180402182502; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402182502'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [6ca45662] Command: if test ! -d /home/deploy/webdataconnector/releases/20180402182502; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402182502'" 1>&2; false; fi
+ DEBUG [6ca45662] Finished in 0.739 seconds with exit status 0 (successful).
+  INFO [c4d80500] Running /usr/bin/env echo "e5ff95bdd32ab53b153841639f9f6932a7c30040" >> REVISION on 52.91.163.132
+ DEBUG [c4d80500] Command: cd /home/deploy/webdataconnector/releases/20180402182502 && /usr/bin/env echo "e5ff95bdd32ab53b153841639f9f6932a7c30040" >> REVISION
+  INFO [c4d80500] Finished in 0.612 seconds with exit status 0 (successful).
+ DEBUG [41b8078e] Running if test ! -d /home/deploy/webdataconnector/releases/20180402182502; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402182502'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [41b8078e] Command: if test ! -d /home/deploy/webdataconnector/releases/20180402182502; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402182502'" 1>&2; false; fi
+ DEBUG [41b8078e] Finished in 1.171 seconds with exit status 0 (successful).
+  INFO [b2812256] Running /usr/bin/env npm install --production --silent --no-progress on 52.91.163.132
+ DEBUG [b2812256] Command: cd /home/deploy/webdataconnector/releases/20180402182502 && /usr/bin/env npm install --production --silent --no-progress
+ DEBUG [b2812256] 	added 149 packages in 3.087s
+  INFO [b2812256] Finished in 4.356 seconds with exit status 0 (successful).
+  INFO [dde0749b] Running /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20180402182502 /home/deploy/webdataconnector/releases/current on 52.91.163.132
+ DEBUG [dde0749b] Command: /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20180402182502 /home/deploy/webdataconnector/releases/current
+  INFO [dde0749b] Finished in 0.593 seconds with exit status 0 (successful).
+  INFO [852f6177] Running /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector on 52.91.163.132
+ DEBUG [852f6177] Command: /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector
+  INFO [852f6177] Finished in 0.994 seconds with exit status 0 (successful).
+ DEBUG [4829018f] Running /usr/bin/env ls -x /home/deploy/webdataconnector/releases on 52.91.163.132
+ DEBUG [4829018f] Command: /usr/bin/env ls -x /home/deploy/webdataconnector/releases
+ DEBUG [4829018f] 	20180313165950	20180313182909	20180326185013	20180327174332	20180402182502
+ DEBUG [4829018f] Finished in 1.177 seconds with exit status 0 (successful).
+  INFO Keeping 4 of 5 deployed releases on 52.91.163.132
+ DEBUG [6dd8045c] Running [ -d /home/deploy/webdataconnector/current ] on 52.91.163.132
+ DEBUG [6dd8045c] Command: [ -d /home/deploy/webdataconnector/current ]
+ DEBUG [6dd8045c] Finished in 2.789 seconds with exit status 0 (successful).
+ DEBUG [61785600] Running /usr/bin/env readlink /home/deploy/webdataconnector/current on 52.91.163.132
+ DEBUG [61785600] Command: /usr/bin/env readlink /home/deploy/webdataconnector/current
+ DEBUG [61785600] 	/home/deploy/webdataconnector/releases/20180402182502
+ DEBUG [61785600] Finished in 0.597 seconds with exit status 0 (successful).
+  INFO [9d222423] Running /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20180313165950 on 52.91.163.132
+ DEBUG [9d222423] Command: /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20180313165950
+  INFO [9d222423] Finished in 0.923 seconds with exit status 0 (successful).
+ DEBUG [166e336f] Running if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [166e336f] Command: if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi
+ DEBUG [166e336f] Finished in 0.895 seconds with exit status 0 (successful).
+  INFO [4ff44549] Running /usr/bin/env echo "Branch master (at e5ff95bdd32ab53b153841639f9f6932a7c30040) deployed as release 20180402182502 by cheryl" >> /home/deploy/webdataconnector/revisions.log on 52.91.163.132
+ DEBUG [4ff44549] Command: cd /home/deploy/webdataconnector/releases && /usr/bin/env echo "Branch master (at e5ff95bdd32ab53b153841639f9f6932a7c30040) deployed as release 20180402182502 by cheryl" >> /home/deploy/webdataconnector/revisions.log
+  INFO [4ff44549] Finished in 1.231 seconds with exit status 0 (successful).
+  INFO [f43bb39a] Running cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start on 52.91.163.132
+ DEBUG [f43bb39a] Command: cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start
+ DEBUG [f43bb39a] 	[32m[PM2] [39mSpawning PM2 daemon with pm2_home=/home/deploy/.pm2
+ DEBUG [f43bb39a] 	[32m[PM2] [39mPM2 Successfully daemonized
+ DEBUG [f43bb39a] 	[32m[PM2] [39mStarting /home/deploy/.nvm/versions/node/v9.8.0/bin/npm in fork_mode (1 instance)
+ DEBUG [f43bb39a] 	[32m[PM2] [39mDone.
+ DEBUG [f43bb39a] 	[90m┌──────────────────┬──────┬────────┬───┬─────┬───────────┐[39m
+[90m│[39m[1m[36m Name             [39m[22m[90m│[39m[1m[36m mode [39m[22m[90m│[39m[1m[36m status [39m[22m[90m│[39m[1m[36m ↺ [39m[22m[90m│[39m[1m[36m cpu [39m[22m[90m│[39m[1m[36m memory    [39m[22m[90m│[39m
+[90m├──────────────────┼──────┼────────┼───┼─────┼───────────┤[39m
+[90m│[39m[1m[36m [1m[36mwebdataconnector[36m[1m [39m[22m[90m│[39m [7m[1mfork[22m[27m [90m│[39m [32m[1monline[22m[39m [90m│[39m 0 [90m│[39m 8%  [90m│[39m 12.9 MB   [90m│[39m
+[90m└──────────────────┴──────┴────────┴───┴─────┴───────────┘[39m
+[37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
+  INFO [f43bb39a] Finished in 1.415 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-04-02 14:58:26 -0500 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [a1241f2f] Running /usr/bin/env mkdir -p /tmp on 52.91.163.132
+ DEBUG [a1241f2f] Command: /usr/bin/env mkdir -p /tmp
+  INFO [a1241f2f] Finished in 1.524 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 0.0%
+  INFO Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 100.0%
+  INFO [7d0ee7e2] Running /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh on 52.91.163.132
+ DEBUG [7d0ee7e2] Command: /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh
+  INFO [7d0ee7e2] Finished in 0.583 seconds with exit status 0 (successful).
+  INFO [c2ffd76f] Running /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD on 52.91.163.132
+ DEBUG [c2ffd76f] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD )
+ DEBUG [c2ffd76f] 	26cad237ad3a8d284ac5fec5f2ee1e472a5cc1be	HEAD
+  INFO [c2ffd76f] Finished in 0.781 seconds with exit status 0 (successful).
+  INFO [8a9fc3f2] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases on 52.91.163.132
+ DEBUG [8a9fc3f2] Command: /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases
+  INFO [8a9fc3f2] Finished in 0.746 seconds with exit status 0 (successful).
+ DEBUG [e6108661] Running [ -f /home/deploy/webdataconnector/current/REVISION ] on 52.91.163.132
+ DEBUG [e6108661] Command: [ -f /home/deploy/webdataconnector/current/REVISION ]
+ DEBUG [e6108661] Finished in 0.613 seconds with exit status 0 (successful).
+ DEBUG [7fd95ad6] Running /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null on 52.91.163.132
+ DEBUG [7fd95ad6] Command: /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null
+ DEBUG [7fd95ad6] 	e5ff95bdd32ab53b153841639f9f6932a7c30040
+ DEBUG [7fd95ad6] Finished in 0.580 seconds with exit status 0 (successful).
+  INFO [3486a873] Running cd /home/deploy/webdataconnector/current && pm2 kill on 52.91.163.132
+ DEBUG [3486a873] Command: cd /home/deploy/webdataconnector/current && pm2 kill
+ DEBUG [3486a873] 	[32m[PM2] [39mStopping PM2...
+ DEBUG [3486a873] 	[32m[PM2] [39mApplying action deleteProcessId on app [all](ids: 0)
+ DEBUG [3486a873] 	[32m[PM2] [39m[webdataconnector](0) ✓
+[32m[PM2] [39mAll processes have been stopped and deleted
+ DEBUG [3486a873] 	[32m[PM2] [39mPM2 stopped
+  INFO [3486a873] Finished in 1.018 seconds with exit status 0 (successful).
+ DEBUG [1c41d686] Running [ -f /home/deploy/webdataconnector/repo/HEAD ] on 52.91.163.132
+ DEBUG [1c41d686] Command: [ -f /home/deploy/webdataconnector/repo/HEAD ]
+ DEBUG [1c41d686] Finished in 0.651 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/deploy/webdataconnector/repo
+ DEBUG [eedeca42] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [eedeca42] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [eedeca42] Finished in 0.586 seconds with exit status 0 (successful).
+  INFO [8bd9887e] Running /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git on 52.91.163.132
+ DEBUG [8bd9887e] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git )
+  INFO [8bd9887e] Finished in 0.639 seconds with exit status 0 (successful).
+  INFO [73663e73] Running /usr/bin/env git remote update --prune on 52.91.163.132
+ DEBUG [73663e73] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [73663e73] 	Fetching origin
+ DEBUG [73663e73] 	remote: Counting objects: 7, done.[K
+remote: Compressing objects:  25% (1/4)   [Kremote: Compressing objects:  50% (2/4)   [Kremote: Compressing objects:  75% (3/4)   [Kremote: Compressing objects: 100% (4/4)   [Kremote: Compressing objects: 100% (4/4), done.[K
+remote: Total 7 (delta 3), reused 6 (delta 3), pack-reused 0[K
+ DEBUG [73663e73] 	Unpacking objects:  14% (1/7)   Unpacking objects:  28% (2/7)   Unpacking objects:  42% (3/7)   Unpacking objects:  57% (4/7)   Unpacking objects:  71% (5/7)   Unpacking objects:  85% (6/7)   Unpacking objects: 100% (7/7)   Unpacking objects: 100% (7/7), done.
+ DEBUG [73663e73] 	From github.com:Fizziology/webdataconnector
+ * [new branch]      feature/genre-table -> feature/genre-table
+   e5ff95b..26cad23  master     -> master
+ * [new ref]         refs/pull/2/head -> refs/pull/2/head
+  INFO [73663e73] Finished in 1.054 seconds with exit status 0 (successful).
+ DEBUG [cd69553f] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [cd69553f] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [cd69553f] Finished in 0.687 seconds with exit status 0 (successful).
+  INFO [eb074a74] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20180402195845 on 52.91.163.132
+ DEBUG [eb074a74] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20180402195845 )
+  INFO [eb074a74] Finished in 0.819 seconds with exit status 0 (successful).
+  INFO [97d08298] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20180402195845 on 52.91.163.132
+ DEBUG [97d08298] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20180402195845 )
+  INFO [97d08298] Finished in 0.818 seconds with exit status 0 (successful).
+ DEBUG [eab82017] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [eab82017] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [eab82017] Finished in 0.616 seconds with exit status 0 (successful).
+ DEBUG [027f9848] Running /usr/bin/env git rev-list --max-count=1 master on 52.91.163.132
+ DEBUG [027f9848] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [027f9848] 	26cad237ad3a8d284ac5fec5f2ee1e472a5cc1be
+ DEBUG [027f9848] Finished in 0.804 seconds with exit status 0 (successful).
+ DEBUG [dd97ff6e] Running if test ! -d /home/deploy/webdataconnector/releases/20180402195845; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402195845'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [dd97ff6e] Command: if test ! -d /home/deploy/webdataconnector/releases/20180402195845; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402195845'" 1>&2; false; fi
+ DEBUG [dd97ff6e] Finished in 0.625 seconds with exit status 0 (successful).
+  INFO [8ffce2e3] Running /usr/bin/env echo "26cad237ad3a8d284ac5fec5f2ee1e472a5cc1be" >> REVISION on 52.91.163.132
+ DEBUG [8ffce2e3] Command: cd /home/deploy/webdataconnector/releases/20180402195845 && /usr/bin/env echo "26cad237ad3a8d284ac5fec5f2ee1e472a5cc1be" >> REVISION
+  INFO [8ffce2e3] Finished in 0.585 seconds with exit status 0 (successful).
+ DEBUG [9158dba1] Running if test ! -d /home/deploy/webdataconnector/releases/20180402195845; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402195845'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [9158dba1] Command: if test ! -d /home/deploy/webdataconnector/releases/20180402195845; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402195845'" 1>&2; false; fi
+ DEBUG [9158dba1] Finished in 0.643 seconds with exit status 0 (successful).
+  INFO [bb01850b] Running /usr/bin/env npm install --production --silent --no-progress on 52.91.163.132
+ DEBUG [bb01850b] Command: cd /home/deploy/webdataconnector/releases/20180402195845 && /usr/bin/env npm install --production --silent --no-progress
+ DEBUG [bb01850b] 	added 149 packages in 1.861s
+  INFO [bb01850b] Finished in 2.858 seconds with exit status 0 (successful).
+  INFO [ba246a86] Running /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20180402195845 /home/deploy/webdataconnector/releases/current on 52.91.163.132
+ DEBUG [ba246a86] Command: /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20180402195845 /home/deploy/webdataconnector/releases/current
+  INFO [ba246a86] Finished in 0.584 seconds with exit status 0 (successful).
+  INFO [0fc2e7d0] Running /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector on 52.91.163.132
+ DEBUG [0fc2e7d0] Command: /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector
+  INFO [0fc2e7d0] Finished in 0.651 seconds with exit status 0 (successful).
+ DEBUG [9f1f424c] Running /usr/bin/env ls -x /home/deploy/webdataconnector/releases on 52.91.163.132
+ DEBUG [9f1f424c] Command: /usr/bin/env ls -x /home/deploy/webdataconnector/releases
+ DEBUG [9f1f424c] 	20180313182909	20180326185013	20180327174332	20180402182502	20180402195845
+ DEBUG [9f1f424c] Finished in 0.613 seconds with exit status 0 (successful).
+  INFO Keeping 4 of 5 deployed releases on 52.91.163.132
+ DEBUG [5eff32e0] Running [ -d /home/deploy/webdataconnector/current ] on 52.91.163.132
+ DEBUG [5eff32e0] Command: [ -d /home/deploy/webdataconnector/current ]
+ DEBUG [5eff32e0] Finished in 0.631 seconds with exit status 0 (successful).
+ DEBUG [b65e47d3] Running /usr/bin/env readlink /home/deploy/webdataconnector/current on 52.91.163.132
+ DEBUG [b65e47d3] Command: /usr/bin/env readlink /home/deploy/webdataconnector/current
+ DEBUG [b65e47d3] 	/home/deploy/webdataconnector/releases/20180402195845
+ DEBUG [b65e47d3] Finished in 0.791 seconds with exit status 0 (successful).
+  INFO [47667242] Running /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20180313182909 on 52.91.163.132
+ DEBUG [47667242] Command: /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20180313182909
+  INFO [47667242] Finished in 0.830 seconds with exit status 0 (successful).
+ DEBUG [a3873067] Running if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [a3873067] Command: if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi
+ DEBUG [a3873067] Finished in 1.023 seconds with exit status 0 (successful).
+  INFO [57dbc877] Running /usr/bin/env echo "Branch master (at 26cad237ad3a8d284ac5fec5f2ee1e472a5cc1be) deployed as release 20180402195845 by cheryl" >> /home/deploy/webdataconnector/revisions.log on 52.91.163.132
+ DEBUG [57dbc877] Command: cd /home/deploy/webdataconnector/releases && /usr/bin/env echo "Branch master (at 26cad237ad3a8d284ac5fec5f2ee1e472a5cc1be) deployed as release 20180402195845 by cheryl" >> /home/deploy/webdataconnector/revisions.log
+  INFO [57dbc877] Finished in 0.613 seconds with exit status 0 (successful).
+  INFO [423a27e4] Running cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start on 52.91.163.132
+ DEBUG [423a27e4] Command: cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start
+ DEBUG [423a27e4] 	[32m[PM2] [39mSpawning PM2 daemon with pm2_home=/home/deploy/.pm2
+ DEBUG [423a27e4] 	[32m[PM2] [39mPM2 Successfully daemonized
+ DEBUG [423a27e4] 	[32m[PM2] [39mStarting /home/deploy/.nvm/versions/node/v9.8.0/bin/npm in fork_mode (1 instance)
+ DEBUG [423a27e4] 	[32m[PM2] [39mDone.
+ DEBUG [423a27e4] 	[90m┌──────────────────┬──────┬────────┬───┬─────┬───────────┐[39m
+[90m│[39m[1m[36m Name             [39m[22m[90m│[39m[1m[36m mode [39m[22m[90m│[39m[1m[36m status [39m[22m[90m│[39m[1m[36m ↺ [39m[22m[90m│[39m[1m[36m cpu [39m[22m[90m│[39m[1m[36m memory    [39m[22m[90m│[39m
+[90m├──────────────────┼──────┼────────┼───┼─────┼───────────┤[39m
+[90m│[39m[1m[36m [1m[36mwebdataconnector[36m[1m [39m[22m[90m│[39m [7m[1mfork[22m[27m [90m│[39m [32m[1monline[22m[39m [90m│[39m 0 [90m│[39m 33% [90m│[39m 12.0 MB   [90m│[39m
+[90m└──────────────────┴──────┴────────┴───┴─────┴───────────┘[39m
+[37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
+  INFO [423a27e4] Finished in 1.272 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-04-02 15:41:21 -0500 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [371105d8] Running /usr/bin/env mkdir -p /tmp on 52.91.163.132
+ DEBUG [371105d8] Command: /usr/bin/env mkdir -p /tmp
+  INFO [371105d8] Finished in 1.342 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 0.0%
+  INFO Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 100.0%
+  INFO [7ad36f34] Running /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh on 52.91.163.132
+ DEBUG [7ad36f34] Command: /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh
+  INFO [7ad36f34] Finished in 0.579 seconds with exit status 0 (successful).
+  INFO [29ad101d] Running /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD on 52.91.163.132
+ DEBUG [29ad101d] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD )
+ DEBUG [29ad101d] 	2b1cf596252b804c9e706c780773bfb6b4423ce8	HEAD
+  INFO [29ad101d] Finished in 0.773 seconds with exit status 0 (successful).
+  INFO [03c87fa5] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases on 52.91.163.132
+ DEBUG [03c87fa5] Command: /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases
+  INFO [03c87fa5] Finished in 0.598 seconds with exit status 0 (successful).
+ DEBUG [7fbc602c] Running [ -f /home/deploy/webdataconnector/current/REVISION ] on 52.91.163.132
+ DEBUG [7fbc602c] Command: [ -f /home/deploy/webdataconnector/current/REVISION ]
+ DEBUG [7fbc602c] Finished in 0.585 seconds with exit status 0 (successful).
+ DEBUG [5c541a30] Running /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null on 52.91.163.132
+ DEBUG [5c541a30] Command: /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null
+ DEBUG [5c541a30] 	26cad237ad3a8d284ac5fec5f2ee1e472a5cc1be
+ DEBUG [5c541a30] Finished in 0.580 seconds with exit status 0 (successful).
+  INFO [2d1b219e] Running cd /home/deploy/webdataconnector/current && pm2 kill on 52.91.163.132
+ DEBUG [2d1b219e] Command: cd /home/deploy/webdataconnector/current && pm2 kill
+ DEBUG [2d1b219e] 	[32m[PM2] [39mStopping PM2...
+ DEBUG [2d1b219e] 	[32m[PM2] [39mApplying action deleteProcessId on app [all](ids: 0)
+ DEBUG [2d1b219e] 	[32m[PM2] [39m[webdataconnector](0) ✓
+[32m[PM2] [39mAll processes have been stopped and deleted
+ DEBUG [2d1b219e] 	[32m[PM2] [39mPM2 stopped
+  INFO [2d1b219e] Finished in 1.051 seconds with exit status 0 (successful).
+ DEBUG [2db716f9] Running [ -f /home/deploy/webdataconnector/repo/HEAD ] on 52.91.163.132
+ DEBUG [2db716f9] Command: [ -f /home/deploy/webdataconnector/repo/HEAD ]
+ DEBUG [2db716f9] Finished in 0.589 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/deploy/webdataconnector/repo
+ DEBUG [29e668cf] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [29e668cf] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [29e668cf] Finished in 0.602 seconds with exit status 0 (successful).
+  INFO [f63b2cfd] Running /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git on 52.91.163.132
+ DEBUG [f63b2cfd] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git )
+  INFO [f63b2cfd] Finished in 0.597 seconds with exit status 0 (successful).
+  INFO [df8ee5da] Running /usr/bin/env git remote update --prune on 52.91.163.132
+ DEBUG [df8ee5da] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [df8ee5da] 	Fetching origin
+ DEBUG [df8ee5da] 	remote: Counting objects: 3, done.[K
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0[K
+ DEBUG [df8ee5da] 	Unpacking objects:  33% (1/3)   Unpacking objects:  66% (2/3)   Unpacking objects: 100% (3/3)   Unpacking objects: 100% (3/3), done.
+ DEBUG [df8ee5da] 	From github.com:Fizziology/webdataconnector
+   26cad23..2b1cf59  master     -> master
+  INFO [df8ee5da] Finished in 1.139 seconds with exit status 0 (successful).
+ DEBUG [f37418ae] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [f37418ae] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [f37418ae] Finished in 0.597 seconds with exit status 0 (successful).
+  INFO [b6674833] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20180402204135 on 52.91.163.132
+ DEBUG [b6674833] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20180402204135 )
+  INFO [b6674833] Finished in 0.611 seconds with exit status 0 (successful).
+  INFO [eca057e6] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20180402204135 on 52.91.163.132
+ DEBUG [eca057e6] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20180402204135 )
+  INFO [eca057e6] Finished in 0.677 seconds with exit status 0 (successful).
+ DEBUG [9fdf89e8] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [9fdf89e8] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [9fdf89e8] Finished in 0.634 seconds with exit status 0 (successful).
+ DEBUG [5d110e99] Running /usr/bin/env git rev-list --max-count=1 master on 52.91.163.132
+ DEBUG [5d110e99] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [5d110e99] 	2b1cf596252b804c9e706c780773bfb6b4423ce8
+ DEBUG [5d110e99] Finished in 0.591 seconds with exit status 0 (successful).
+ DEBUG [dd87dbc6] Running if test ! -d /home/deploy/webdataconnector/releases/20180402204135; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402204135'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [dd87dbc6] Command: if test ! -d /home/deploy/webdataconnector/releases/20180402204135; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402204135'" 1>&2; false; fi
+ DEBUG [dd87dbc6] Finished in 0.578 seconds with exit status 0 (successful).
+  INFO [cb915a8a] Running /usr/bin/env echo "2b1cf596252b804c9e706c780773bfb6b4423ce8" >> REVISION on 52.91.163.132
+ DEBUG [cb915a8a] Command: cd /home/deploy/webdataconnector/releases/20180402204135 && /usr/bin/env echo "2b1cf596252b804c9e706c780773bfb6b4423ce8" >> REVISION
+  INFO [cb915a8a] Finished in 0.582 seconds with exit status 0 (successful).
+ DEBUG [033c2673] Running if test ! -d /home/deploy/webdataconnector/releases/20180402204135; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402204135'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [033c2673] Command: if test ! -d /home/deploy/webdataconnector/releases/20180402204135; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20180402204135'" 1>&2; false; fi
+ DEBUG [033c2673] Finished in 0.674 seconds with exit status 0 (successful).
+  INFO [46b53d2d] Running /usr/bin/env npm install --production --silent --no-progress on 52.91.163.132
+ DEBUG [46b53d2d] Command: cd /home/deploy/webdataconnector/releases/20180402204135 && /usr/bin/env npm install --production --silent --no-progress
+ DEBUG [46b53d2d] 	added 149 packages in 1.865s
+  INFO [46b53d2d] Finished in 2.897 seconds with exit status 0 (successful).
+  INFO [0c1c7737] Running /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20180402204135 /home/deploy/webdataconnector/releases/current on 52.91.163.132
+ DEBUG [0c1c7737] Command: /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20180402204135 /home/deploy/webdataconnector/releases/current
+  INFO [0c1c7737] Finished in 0.613 seconds with exit status 0 (successful).
+  INFO [b481c69d] Running /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector on 52.91.163.132
+ DEBUG [b481c69d] Command: /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector
+  INFO [b481c69d] Finished in 0.716 seconds with exit status 0 (successful).
+ DEBUG [a030bab7] Running /usr/bin/env ls -x /home/deploy/webdataconnector/releases on 52.91.163.132
+ DEBUG [a030bab7] Command: /usr/bin/env ls -x /home/deploy/webdataconnector/releases
+ DEBUG [a030bab7] 	20180326185013	20180327174332	20180402182502	20180402195845	20180402204135
+ DEBUG [a030bab7] Finished in 0.613 seconds with exit status 0 (successful).
+  INFO Keeping 4 of 5 deployed releases on 52.91.163.132
+ DEBUG [bfa758c3] Running [ -d /home/deploy/webdataconnector/current ] on 52.91.163.132
+ DEBUG [bfa758c3] Command: [ -d /home/deploy/webdataconnector/current ]
+ DEBUG [bfa758c3] Finished in 0.818 seconds with exit status 0 (successful).
+ DEBUG [ad39c139] Running /usr/bin/env readlink /home/deploy/webdataconnector/current on 52.91.163.132
+ DEBUG [ad39c139] Command: /usr/bin/env readlink /home/deploy/webdataconnector/current
+ DEBUG [ad39c139] 	/home/deploy/webdataconnector/releases/20180402204135
+ DEBUG [ad39c139] Finished in 0.613 seconds with exit status 0 (successful).
+  INFO [4d101adc] Running /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20180326185013 on 52.91.163.132
+ DEBUG [4d101adc] Command: /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20180326185013
+  INFO [4d101adc] Finished in 0.819 seconds with exit status 0 (successful).
+ DEBUG [3341997d] Running if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi on 52.91.163.132
+ DEBUG [3341997d] Command: if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi
+ DEBUG [3341997d] Finished in 0.818 seconds with exit status 0 (successful).
+  INFO [83abf04e] Running /usr/bin/env echo "Branch master (at 2b1cf596252b804c9e706c780773bfb6b4423ce8) deployed as release 20180402204135 by cheryl" >> /home/deploy/webdataconnector/revisions.log on 52.91.163.132
+ DEBUG [83abf04e] Command: cd /home/deploy/webdataconnector/releases && /usr/bin/env echo "Branch master (at 2b1cf596252b804c9e706c780773bfb6b4423ce8) deployed as release 20180402204135 by cheryl" >> /home/deploy/webdataconnector/revisions.log
+  INFO [83abf04e] Finished in 0.614 seconds with exit status 0 (successful).
+  INFO [a0f583c1] Running cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start on 52.91.163.132
+ DEBUG [a0f583c1] Command: cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start
+ DEBUG [a0f583c1] 	[32m[PM2] [39mSpawning PM2 daemon with pm2_home=/home/deploy/.pm2
+ DEBUG [a0f583c1] 	[32m[PM2] [39mPM2 Successfully daemonized
+ DEBUG [a0f583c1] 	[32m[PM2] [39mStarting /home/deploy/.nvm/versions/node/v9.8.0/bin/npm in fork_mode (1 instance)
+ DEBUG [a0f583c1] 	[32m[PM2] [39mDone.
+ DEBUG [a0f583c1] 	[90m┌──────────────────┬──────┬────────┬───┬─────┬───────────┐[39m
+[90m│[39m[1m[36m Name             [39m[22m[90m│[39m[1m[36m mode [39m[22m[90m│[39m[1m[36m status [39m[22m[90m│[39m[1m[36m ↺ [39m[22m[90m│[39m[1m[36m cpu [39m[22m[90m│[39m[1m[36m memory    [39m[22m[90m│[39m
+[90m├──────────────────┼──────┼────────┼───┼─────┼───────────┤[39m
+[90m│[39m[1m[36m [1m[36mwebdataconnector[36m[1m [39m[22m[90m│[39m [7m[1mfork[22m[27m [90m│[39m [32m[1monline[22m[39m [90m│[39m 0 [90m│[39m 6%  [90m│[39m 13.4 MB   [90m│[39m
+[90m└──────────────────┴──────┴────────┴───┴─────┴───────────┘[39m
+[37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
+  INFO [a0f583c1] Finished in 1.229 seconds with exit status 0 (successful).

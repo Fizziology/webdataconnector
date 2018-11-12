@@ -82,6 +82,14 @@
 			id: "tracker_title",
 			alias: "tracker_title",
 			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "created_at",
+			alias: "created_at",
+			dataType: tableau.dataTypeEnum.date
+		}, {
+			id: "updated_at",
+			alias: "updated_at",
+			dataType: tableau.dataTypeEnum.date
 		}];
 
 		var propertyTable = {
@@ -210,7 +218,9 @@
             "oscar_nominee": properties[i].oscar_nominee,
             "cinema_score_letter": properties[i].cinema_score_letter,
             "cinema_score_number": properties[i].cinema_score_number,
-            "tracker_title": properties[i].tracker_title
+            "tracker_title": properties[i].tracker_title,
+            "created_at": properties[i].created_at,
+            "updated_at": properties[i].updated_at
           });
         }
 			}
