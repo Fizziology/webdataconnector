@@ -85,11 +85,11 @@
 		}, {
 			id: "created_at",
 			alias: "created_at",
-			dataType: tableau.dataTypeEnum.date
+			dataType: tableau.dataTypeEnum.datetime
 		}, {
 			id: "updated_at",
 			alias: "updated_at",
-			dataType: tableau.dataTypeEnum.date
+			dataType: tableau.dataTypeEnum.datetime
 		}];
 
 		var propertyTable = {
