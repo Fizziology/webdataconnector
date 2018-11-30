@@ -136,7 +136,38 @@
 			columns: properties_genres_cols
 		};
 
-		schemaCallback([propertyTable, genreTable, propertiesGenresTable]);
+    var twitter_rule_cols = [{
+			id: "property_id",
+			alias: "property_id",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "gnip_id",
+			alias: "gnip_id",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "term",
+			alias: "term",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "active",
+			alias: "active",
+			dataType: tableau.dataTypeEnum.bool
+		}, {
+			id: "created_at",
+			alias: "created_at",
+			dataType: tableau.dataTypeEnum.datetime
+		}, {
+			id: "id",
+			dataType: tableau.dataTypeEnum.string
+    }];
+
+		var twitterRulesTable = {
+			id: "centrifugeTwitterRules",
+			alias: "Twitter rule information from Centrifuge",
+			columns: twitter_rule_cols
+		};
+
+		schemaCallback([propertyTable, genreTable, propertiesGenresTable, twitterRulesTable]);
 
 	};
 
@@ -155,12 +186,15 @@
 
     //var endpointUrl = "http://localhost:3030/api/tableau/"
     var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
+
     if (table.tableInfo.id == "centrifugeProperties") {
       endpointUrl = endpointUrl + "properties"
     } else if (table.tableInfo.id == "centrifugeGenres") {
       endpointUrl = endpointUrl + "genres"
     } else if (table.tableInfo.id == "centrifugePropertiesGenres") {
       endpointUrl = endpointUrl + "properties_genres"
+    } else if (table.tableInfo.id == "centrifugeTwitterRules") {
+      endpointUrl = endpointUrl + "twitter_rules"
     }
     tableau.log(endpointUrl);
 
@@ -224,6 +258,22 @@
           });
         }
 			}
+
+      if (table.tableInfo.id == "centrifugeTwitterRules") {
+        tableau.log("rules response: ");
+        tableau.log(resp);
+			  var rules = resp.twitter_rules;
+        for (i = 0, len = rules.length; i < len; i++) {
+          tableData.push({
+            "id": rules[i].id,
+            "property_id": rules[i].property_id,
+            "gnip_id": rules[i].gnip_id,
+            "term": rules[i].term,
+            "active": rules[i].active,
+            "created_at": rules[i].created_at
+          });
+        }
+      }
 
 			table.appendRows(tableData);
 			doneCallback();
