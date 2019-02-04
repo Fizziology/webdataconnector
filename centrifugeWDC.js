@@ -37,7 +37,7 @@
 		}, {
 			id: "box_office_opening",
 			alias: "box_office_opening",
-			dataType: tableau.dataTypeEnum.date
+			dataType: tableau.dataTypeEnum.float
 		}, {
 			id: "distributor",
 			alias: "distributor",
