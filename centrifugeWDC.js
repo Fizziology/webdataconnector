@@ -13,7 +13,7 @@
 
 		var property_cols = [{
 			id: "id",
-			dataType: tableau.dataTypeEnum.string
+			dataType: tableau.dataTypeEnum.int
 		}, {
 			id: "title",
 			alias: "Slug Title",
@@ -108,7 +108,7 @@
 			dataType: tableau.dataTypeEnum.string
 		}, {
 			id: "id",
-			dataType: tableau.dataTypeEnum.string
+			dataType: tableau.dataTypeEnum.int
     }];
 
 		var genreTable = {
@@ -120,14 +120,14 @@
     var properties_genres_cols = [{
 			id: "property_id",
 			alias: "property_id",
-			dataType: tableau.dataTypeEnum.string
+			dataType: tableau.dataTypeEnum.int
 		}, {
 			id: "genre_id",
 			alias: "genre_id",
-			dataType: tableau.dataTypeEnum.string
+			dataType: tableau.dataTypeEnum.int
 		}, {
 			id: "id",
-			dataType: tableau.dataTypeEnum.string
+			dataType: tableau.dataTypeEnum.int
     }];
 
 		var propertiesGenresTable = {
@@ -139,7 +139,7 @@
     var twitter_rule_cols = [{
 			id: "property_id",
 			alias: "property_id",
-			dataType: tableau.dataTypeEnum.string
+			dataType: tableau.dataTypeEnum.int
 		}, {
 			id: "gnip_id",
 			alias: "gnip_id",
@@ -158,7 +158,7 @@
 			dataType: tableau.dataTypeEnum.datetime
 		}, {
 			id: "id",
-			dataType: tableau.dataTypeEnum.string
+			dataType: tableau.dataTypeEnum.int
     }];
 
 		var twitterRulesTable = {
