@@ -167,7 +167,54 @@
 			columns: twitter_rule_cols
 		};
 
-		schemaCallback([propertyTable, genreTable, propertiesGenresTable, twitterRulesTable]);
+    var instagram_rule_cols = [{
+			id: "property_id",
+			alias: "property_id",
+			dataType: tableau.dataTypeEnum.int
+		}, {
+			id: "username",
+			alias: "username",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "all",
+			alias: "all",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "none",
+			alias: "none",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "any",
+			alias: "any",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "content_types",
+			alias: "content_types",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "languages",
+			alias: "languages",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "active",
+			alias: "active",
+			dataType: tableau.dataTypeEnum.bool
+		}, {
+			id: "created_at",
+			alias: "created_at",
+			dataType: tableau.dataTypeEnum.datetime
+		}, {
+			id: "id",
+			dataType: tableau.dataTypeEnum.int
+    }];
+
+		var instagramRulesTable = {
+			id: "centrifugeInstagramRules",
+			alias: "Instagram rule information from Centrifuge",
+			columns: instagram_rule_cols
+		};
+
+		schemaCallback([propertyTable, genreTable, propertiesGenresTable, twitterRulesTable, instagramRulesTable]);
 
 	};
 
@@ -195,6 +242,8 @@
       endpointUrl = endpointUrl + "properties_genres"
     } else if (table.tableInfo.id == "centrifugeTwitterRules") {
       endpointUrl = endpointUrl + "twitter_rules"
+    } else if (table.tableInfo.id == "centrifugeInstagramRules") {
+      endpointUrl = endpointUrl + "instagram_rules"
     }
     tableau.log(endpointUrl);
 
@@ -269,6 +318,27 @@
             "property_id": rules[i].property_id,
             "gnip_id": rules[i].gnip_id,
             "term": rules[i].term,
+            "active": rules[i].active,
+            "created_at": rules[i].created_at
+          });
+        }
+      }
+
+
+      if (table.tableInfo.id == "centrifugeInstagramRules") {
+        tableau.log("rules response: ");
+        tableau.log(resp);
+			  var rules = resp.instagram_rules;
+        for (i = 0, len = rules.length; i < len; i++) {
+          tableData.push({
+            "id": rules[i].id,
+            "property_id": rules[i].property_id,
+            "username": rules[i].username,
+            "all": rules[i].all,
+            "any": rules[i].any,
+            "none": rules[i].none,
+            "content_types": rules[i].content_types,
+            "languages": rules[i].languages,
             "active": rules[i].active,
             "created_at": rules[i].created_at
           });
