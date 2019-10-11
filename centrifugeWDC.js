@@ -136,7 +136,7 @@
 			columns: properties_genres_cols
 		};
 
-    var twitter_rule_cols = [{
+    var rule_cols = [{
 			id: "property_id",
 			alias: "property_id",
 			dataType: tableau.dataTypeEnum.int
@@ -148,29 +148,6 @@
 			id: "term",
 			alias: "term",
 			dataType: tableau.dataTypeEnum.string
-		}, {
-			id: "active",
-			alias: "active",
-			dataType: tableau.dataTypeEnum.bool
-		}, {
-			id: "created_at",
-			alias: "created_at",
-			dataType: tableau.dataTypeEnum.datetime
-		}, {
-			id: "id",
-			dataType: tableau.dataTypeEnum.int
-    }];
-
-		var twitterRulesTable = {
-			id: "centrifugeTwitterRules",
-			alias: "Twitter rule information from Centrifuge",
-			columns: twitter_rule_cols
-		};
-
-    var instagram_rule_cols = [{
-			id: "property_id",
-			alias: "property_id",
-			dataType: tableau.dataTypeEnum.int
 		}, {
 			id: "username",
 			alias: "username",
@@ -188,12 +165,88 @@
 			alias: "any",
 			dataType: tableau.dataTypeEnum.string
 		}, {
+			id: "one",
+			alias: "one",
+			dataType: tableau.dataTypeEnum.string
+		}, {
 			id: "content_types",
 			alias: "content_types",
 			dataType: tableau.dataTypeEnum.string
 		}, {
+			id: "object_type",
+			alias: "object_type",
+			dataType: tableau.dataTypeEnum.string
+		}, {
 			id: "languages",
 			alias: "languages",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "language",
+			alias: "language",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "post_type",
+			alias: "post_type",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "account",
+			alias: "account",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "pages",
+			alias: "pages",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "excluded_pages",
+			alias: "excluded_pages",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "country",
+			alias: "country",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "post_link",
+			alias: "post_link",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "subreddit",
+			alias: "subreddit",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "user",
+			alias: "user",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "keyword",
+			alias: "keyword",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "domain",
+			alias: "domain",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "channel_id",
+			alias: "channel_id",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "playlist_id",
+			alias: "playlist_id",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "video_id",
+			alias: "video_id",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "keyword_query",
+			alias: "keyword_query",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "description",
+			alias: "description",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "kind",
+			alias: "kind",
 			dataType: tableau.dataTypeEnum.string
 		}, {
 			id: "active",
@@ -208,13 +261,13 @@
 			dataType: tableau.dataTypeEnum.int
     }];
 
-		var instagramRulesTable = {
-			id: "centrifugeInstagramRules",
-			alias: "Instagram rule information from Centrifuge",
-			columns: instagram_rule_cols
+		var rulesTable = {
+			id: "centrifugeRules",
+			alias: "Rule information from Centrifuge",
+			columns: rule_cols
 		};
 
-		schemaCallback([propertyTable, genreTable, propertiesGenresTable, twitterRulesTable, instagramRulesTable]);
+		schemaCallback([propertyTable, genreTable, propertiesGenresTable, rulesTable]);
 
 	};
 
@@ -231,8 +284,8 @@
     //the WDC API calls the getData function once for each schema
     //Here we select which url to use for each schema
 
-    //var endpointUrl = "http://localhost:3030/api/tableau/"
-    var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
+    var endpointUrl = "http://localhost:3030/api/tableau/"
+    //var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
 
     if (table.tableInfo.id == "centrifugeProperties") {
       endpointUrl = endpointUrl + "properties"
@@ -240,10 +293,8 @@
       endpointUrl = endpointUrl + "genres"
     } else if (table.tableInfo.id == "centrifugePropertiesGenres") {
       endpointUrl = endpointUrl + "properties_genres"
-    } else if (table.tableInfo.id == "centrifugeTwitterRules") {
-      endpointUrl = endpointUrl + "twitter_rules"
-    } else if (table.tableInfo.id == "centrifugeInstagramRules") {
-      endpointUrl = endpointUrl + "instagram_rules"
+    } else if (table.tableInfo.id == "centrifugeRules") {
+      endpointUrl = endpointUrl + "combined_rules"
     }
     tableau.log(endpointUrl);
 
@@ -308,37 +359,41 @@
         }
 			}
 
-      if (table.tableInfo.id == "centrifugeTwitterRules") {
+      if (table.tableInfo.id == "centrifugeRules") {
         tableau.log("rules response: ");
         tableau.log(resp);
-			  var rules = resp.twitter_rules;
+			  var rules = resp.rules;
         for (i = 0, len = rules.length; i < len; i++) {
           tableData.push({
             "id": rules[i].id,
             "property_id": rules[i].property_id,
             "gnip_id": rules[i].gnip_id,
             "term": rules[i].term,
-            "active": rules[i].active,
-            "created_at": rules[i].created_at
-          });
-        }
-      }
-
-
-      if (table.tableInfo.id == "centrifugeInstagramRules") {
-        tableau.log("rules response: ");
-        tableau.log(resp);
-			  var rules = resp.instagram_rules;
-        for (i = 0, len = rules.length; i < len; i++) {
-          tableData.push({
-            "id": rules[i].id,
-            "property_id": rules[i].property_id,
             "username": rules[i].username,
             "all": rules[i].all,
             "any": rules[i].any,
+            "one": rules[i].one,
             "none": rules[i].none,
             "content_types": rules[i].content_types,
+            "object_type": rules[i].object_type,
             "languages": rules[i].languages,
+            "language": rules[i].language,
+            "country": rules[i].country,
+            "pages": rules[i].pages,
+            "excluded_pages": rules[i].excluded_pages,
+            "post_type": rules[i].post_type,
+            "account": rules[i].account,
+            "keyword": rules[i].keyword,
+            "post_link": rules[i].post_link,
+            "subreddit": rules[i].subreddit,
+            "user": rules[i].user,
+            "domain": rules[i].domain,
+            "channel_id": rules[i].channel_id,
+            "playlist_id": rules[i].playlist_id,
+            "video_id": rules[i].video_id,
+            "keyword_query": rules[i].keyword_query,
+            "description": rules[i].description,
+            "kind": rules[i].kind,
             "active": rules[i].active,
             "created_at": rules[i].created_at
           });
