@@ -284,8 +284,8 @@
     //the WDC API calls the getData function once for each schema
     //Here we select which url to use for each schema
 
-    var endpointUrl = "http://localhost:3030/api/tableau/"
-    //var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
+    //var endpointUrl = "http://localhost:3030/api/tableau/"
+    var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
 
     if (table.tableInfo.id == "centrifugeProperties") {
       endpointUrl = endpointUrl + "properties"
