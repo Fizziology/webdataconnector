@@ -259,7 +259,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capistrano (~> 3.1)
+  capistrano (~> 3.10)
   capistrano-npm
   github-pages
 
