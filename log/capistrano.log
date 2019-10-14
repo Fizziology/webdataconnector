@@ -614,3 +614,155 @@ remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0[K
 [90m└──────────────────┴──────┴────────┴───┴─────┴───────────┘[39m
 [37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
   INFO [a0f583c1] Finished in 1.229 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2019-10-14 10:48:30 -0500 cap production deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [37709d13] Running /usr/bin/env mkdir -p /tmp on 54.211.3.191
+ DEBUG [37709d13] Command: /usr/bin/env mkdir -p /tmp
+  INFO [37709d13] Finished in 1.191 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 0.0%
+  INFO Uploading /tmp/git-ssh-webdataconnector-production-cheryl.sh 100.0%
+  INFO [b4b6a79f] Running /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh on 54.211.3.191
+ DEBUG [b4b6a79f] Command: /usr/bin/env chmod 700 /tmp/git-ssh-webdataconnector-production-cheryl.sh
+  INFO [b4b6a79f] Finished in 0.639 seconds with exit status 0 (successful).
+  INFO [b67a45c0] Running /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD on 54.211.3.191
+ DEBUG [b67a45c0] Command: ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git ls-remote git@github.com:Fizziology/webdataconnector.git HEAD )
+ DEBUG [b67a45c0] 	5c3896ef439025a36205f819f0538927f6875148	HEAD
+  INFO [b67a45c0] Finished in 0.846 seconds with exit status 0 (successful).
+  INFO [80c18523] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases on 54.211.3.191
+ DEBUG [80c18523] Command: /usr/bin/env mkdir -p /home/deploy/webdataconnector/shared /home/deploy/webdataconnector/releases
+  INFO [80c18523] Finished in 0.687 seconds with exit status 0 (successful).
+ DEBUG [708d1228] Running [ -f /home/deploy/webdataconnector/current/REVISION ] on 54.211.3.191
+ DEBUG [708d1228] Command: [ -f /home/deploy/webdataconnector/current/REVISION ]
+ DEBUG [708d1228] Finished in 0.715 seconds with exit status 0 (successful).
+ DEBUG [71366154] Running /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null on 54.211.3.191
+ DEBUG [71366154] Command: /usr/bin/env cat /home/deploy/webdataconnector/current/REVISION 2>/dev/null
+ DEBUG [71366154] 	285045437f5107a7e0332276afe4e004fb2082c7
+ DEBUG [71366154] Finished in 0.716 seconds with exit status 0 (successful).
+  INFO [79c80c24] Running cd /home/deploy/webdataconnector/current && pm2 kill on 54.211.3.191
+ DEBUG [79c80c24] Command: cd /home/deploy/webdataconnector/current && pm2 kill
+ DEBUG [79c80c24] 	[32m[PM2] [39mStopping PM2...
+ DEBUG [79c80c24] 	[32m[PM2] [39mApplying action deleteProcessId on app [all](ids: 0)
+ DEBUG [79c80c24] 	[32m[PM2] [39m[webdataconnector](0) ✓
+[32m[PM2] [39mAll processes have been stopped and deleted
+ DEBUG [79c80c24] 	[32m[PM2] [39mPM2 stopped
+  INFO [79c80c24] Finished in 1.040 seconds with exit status 0 (successful).
+ DEBUG [6ade256c] Running [ -f /home/deploy/webdataconnector/repo/HEAD ] on 54.211.3.191
+ DEBUG [6ade256c] Command: [ -f /home/deploy/webdataconnector/repo/HEAD ]
+ DEBUG [6ade256c] Finished in 0.699 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/deploy/webdataconnector/repo
+ DEBUG [ba01d9c9] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 54.211.3.191
+ DEBUG [ba01d9c9] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [ba01d9c9] Finished in 0.717 seconds with exit status 0 (successful).
+  INFO [43012516] Running /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git on 54.211.3.191
+ DEBUG [43012516] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote set-url origin git@github.com:Fizziology/webdataconnector.git )
+  INFO [43012516] Finished in 0.715 seconds with exit status 0 (successful).
+  INFO [3da39f25] Running /usr/bin/env git remote update --prune on 54.211.3.191
+ DEBUG [3da39f25] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [3da39f25] 	Fetching origin
+ DEBUG [3da39f25] 	remote: Enumerating objects: 179, done.[K
+remote: Counting objects:   0% (1/179)[Kremote: Counting objects:   1% (2/179)[K
+ DEBUG [3da39f25] 	remote: Counting objects:   2% (4/179)[Kremote: Counting objects:   3% (6/179)[Kremote: Counting objects:   4% (8/179)[Kremote: Counting objects:   5% (9/179)[Kremote: Counting objects:   6% (11/179)[K
+ DEBUG [3da39f25] 	remote: Counting objects:   7% (13/179)[Kremote: Counting objects:   8% (15/179)[K
+ DEBUG [3da39f25] 	remote: Counting objects:   9% (17/179)[Kremote: Counting objects:  10% (18/179)[Kremote: Counting objects:  11% (20/179)[Kremote: Counting objects:  12% (22/179)[Kremote: Counting objects:  13% (24/179)[Kremote: Counting objects:  14% (26/179)[Kremote: Counting objects:  15% (27/179)[Kremote: Counting objects:  16% (29/179)[Kremote: Counting objects:  17% (31/179)[Kremote: Counting objects:  18% (33/179)[Kremote: Counting objects:  19% (35/179)[Kremote: Counting objects:  20% (36/179)[Kremote: Counting objects:  21% (38/179)[Kremote: Counting objects:  22% (40/179)[Kremote: Counting objects:  23% (42/179)[Kremote: Counting objects:  24% (43/179)[Kremote: Counting objects:  25% (45/179)[Kremote: Counting objects:  26% (47/179)[Kremote: Counting objects:  27% (49/179)[Kremote: Counting objects:  28% (51/179)[Kremote: Counting objects:  29% (52/179)[Kremote: Counting objects:  30% (54/179)[Kremote: Counting objects:  31% (56/179)[Kremote: Counting objects:  32% (58/179)[Kremote: Counting objects:  33% (60/179)[Kremote: Counting objects:  34% (61/179)[Kremote: Counting objects:  35% (63/179)[Kremote: Counting objects:  36% (65/179)[Kremote: Counting objects:  37% (67/179)[Kremote: Counting objects:  38% (69/179)[Kremote: Counting objects:  39% (70/179)[Kremote: Counting objects:  40% (72/179)[Kremote: Counting objects:  41% (74/179)[Kremote: Counting objects:  42% (76/179)[Kremote: Counting objects:  43% (77/179)[Kremote: Counting objects:  44% (79/179)[Kremote: Counting objects:  45% (81/179)[Kremote: Counting objects:  46% (83/179)[Kremote: Counting objects:  47% (85/179)[Kremote: Counting objects:  48% (86/179)[Kremote: Counting objects:  49% (88/179)[Kremote: Counting objects:  50% (90/179)[Kremote: Counting objects:  51% (92/179)[Kremote: Counting objects:  52% (94/179)[Kremote: Counting objects:  53% (95/179)[Kremote: Counting objects:  54% (97/179)[Kremote: Counting objects:  55% (99/179)[Kremote: Counting objects:  56% (101/179)[Kremote: Counting objects:  57% (103/179)[Kremote: Counting objects:  58% (104/179)[Kremote: Counting objects:  59% (106/179)[Kremote: Counting objects:  60% (108/179)[Kremote: Counting objects:  61% (110/179)[Kremote: Counting objects:  62% (111/179)[Kremote: Counting objects:  63% (113/179)[Kremote: Counting objects:  64% (115/179)[Kremote: Counting objects:  65% (117/179)[Kremote: Counting objects:  66% (119/179)[Kremote: Counting objects:  67% (120/179)[Kremote: Counting objects:  68% (122/179)[Kremote: Counting objects:  69% (124/179)[Kremote: Counting objects:  70% (126/179)[Kremote: Counting objects:  71% (128/179)[Kremote: Counting objects:  72% (129/179)[Kremote: Counting objects:  73% (131/179)[Kremote: Counting objects:  74% (133/179)[Kremote: Counting objects:  75% (135/179)[Kremote: Counting objects:  76% (137/179)[Kremote: Counting objects:  77% (138/179)[K
+ DEBUG [3da39f25] 	remote: Counting objects:  78% (140/179)[Kremote: Counting objects:  79% (142/179)[Kremote: Counting objects:  80% (144/179)[Kremote: Counting objects:  81% (145/179)[Kremote: Counting objects:  82% (147/179)[Kremote: Counting objects:  83% (149/179)[Kremote: Counting objects:  84% (151/179)[Kremote: Counting objects:  85% (153/179)[Kremote: Counting objects:  86% (154/179)[Kremote: Counting objects:  87% (156/179)[Kremote: Counting objects:  88% (158/179)[Kremote: Counting objects:  89% (160/179)[Kremote: Counting objects:  90% (162/179)[Kremote: Counting objects:  91% (163/179)[Kremote: Counting objects:  92% (165/179)[Kremote: Counting objects:  93% (167/179)[Kremote: Counting objects:  94% (169/179)[Kremote: Counting objects:  95% (171/179)[Kremote: Counting objects:  96% (172/179)[Kremote: Counting objects:  97% (174/179)[Kremote: Counting objects:  98% (176/179)[Kremote: Counting objects:  99% (178/179)[Kremote: Counting objects: 100% (179/179)[Kremote: Counting objects: 100% (179/179), done.[K
+remote: Compressing objects:   1% (1/54)[Kremote: Compressing objects:   3% (2/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:   5% (3/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:   7% (4/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:   9% (5/54)[Kremote: Compressing objects:  11% (6/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  12% (7/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  14% (8/54)[Kremote: Compressing objects:  16% (9/54)[Kremote: Compressing objects:  18% (10/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  20% (11/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  22% (12/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  24% (13/54)[Kremote: Compressing objects:  25% (14/54)[Kremote: Compressing objects:  27% (15/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  29% (16/54)[Kremote: Compressing objects:  31% (17/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  33% (18/54)[Kremote: Compressing objects:  35% (19/54)[Kremote: Compressing objects:  37% (20/54)[Kremote: Compressing objects:  38% (21/54)[Kremote: Compressing objects:  40% (22/54)[Kremote: Compressing objects:  42% (23/54)[Kremote: Compressing objects:  44% (24/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  46% (25/54)[Kremote: Compressing objects:  48% (26/54)[Kremote: Compressing objects:  50% (27/54)[Kremote: Compressing objects:  51% (28/54)[Kremote: Compressing objects:  53% (29/54)[Kremote: Compressing objects:  55% (30/54)[Kremote: Compressing objects:  57% (31/54)[Kremote: Compressing objects:  59% (32/54)[Kremote: Compressing objects:  61% (33/54)[Kremote: Compressing objects:  62% (34/54)[Kremote: Compressing objects:  64% (35/54)[Kremote: Compressing objects:  66% (36/54)[Kremote: Compressing objects:  68% (37/54)[Kremote: Compressing objects:  70% (38/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  72% (39/54)[Kremote: Compressing objects:  74% (40/54)[Kremote: Compressing objects:  75% (41/54)[Kremote: Compressing objects:  77% (42/54)[Kremote: Compressing objects:  79% (43/54)[Kremote: Compressing objects:  81% (44/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  83% (45/54)[Kremote: Compressing objects:  85% (46/54)[Kremote: Compressing objects:  87% (47/54)[Kremote: Compressing objects:  88% (48/54)[Kremote: Compressing objects:  90% (49/54)[Kremote: Compressing objects:  92% (50/54)[Kremote: Compressing objects:  94% (51/54)[Kremote: Compressing objects:  96% (52/54)[K
+ DEBUG [3da39f25] 	remote: Compressing objects:  98% (53/54)[Kremote: Compressing objects: 100% (54/54)[Kremote: Compressing objects: 100% (54/54), done.[K
+ DEBUG [3da39f25] 	Receiving objects:   0% (1/231)   Receiving objects:   1% (3/231)   Receiving objects:   2% (5/231)   Receiving objects:   3% (7/231)   Receiving objects:   4% (10/231)   Receiving objects:   5% (12/231)   Receiving objects:   6% (14/231)   Receiving objects:   7% (17/231)   
+ DEBUG [3da39f25] 	Receiving objects:   8% (19/231)   Receiving objects:   9% (21/231)   Receiving objects:  10% (24/231)   Receiving objects:  11% (26/231)   Receiving objects:  12% (28/231)   Receiving objects:  13% (31/231)   Receiving objects:  14% (33/231)   Receiving objects:  15% (35/231)   Receiving objects:  16% (37/231)   Receiving objects:  17% (40/231)   Receiving objects:  18% (42/231)   Receiving objects:  19% (44/231)   Receiving objects:  20% (47/231)   Receiving objects:  21% (49/231)   Receiving objects:  22% (51/231)   Receiving objects:  23% (54/231)   Receiving objects:  24% (56/231)   Receiving objects:  25% (58/231)   Receiving objects:  26% (61/231)   Receiving objects:  27% (63/231)   Receiving objects:  28% (65/231)   Receiving objects:  29% (67/231)   Receiving objects:  30% (70/231)   Receiving objects:  31% (72/231)   Receiving objects:  32% (74/231)   Receiving objects:  33% (77/231)   Receiving objects:  34% (79/231)   Receiving objects:  35% (81/231)   Receiving objects:  36% (84/231)   Receiving objects:  37% (86/231)   Receiving objects:  38% (88/231)   Receiving objects:  39% (91/231)   Receiving objects:  40% (93/231)   Receiving objects:  41% (95/231)   Receiving objects:  42% (98/231)   Receiving objects:  43% (100/231)   Receiving objects:  44% (102/231)   Receiving objects:  45% (104/231)   Receiving objects:  46% (107/231)   Receiving objects:  47% (109/231)   Receiving objects:  48% (111/231)   Receiving objects:  49% (114/231)   Receiving objects:  50% (116/231)   Receiving objects:  51% (118/231)   Receiving objects:  52% (121/231)   Receiving objects:  53% (123/231)   Receiving objects:  54% (125/231)   Receiving objects:  55% (128/231)   Receiving objects:  56% (130/231)   Receiving objects:  57% (132/231)   Receiving objects:  58% (134/231)   Receiving objects:  59% (137/231)   Receiving objects:  60% (139/231)   Receiving objects:  61% (141/231)   Receiving objects:  62% (144/231)   Receiving objects:  63% (146/231)   Receiving objects:  64% (148/231)   Receiving objects:  65% (151/231)   Receiving objects:  66% (153/231)   Receiving objects:  67% (155/231)   Receiving objects:  68% (158/231)   Receiving objects:  69% (160/231)   Receiving objects:  70% (162/231)   Receiving objects:  71% (165/231)   Receiving objects:  72% (167/231)   Receiving objects:  73% (169/231)   Receiving objects:  74% (171/231)   Receiving objects:  75% (174/231)   Receiving objects:  76% (176/231)   Receiving objects:  77% (178/231)   Receiving objects:  78% (181/231)   Receiving objects:  79% (183/231)   Receiving objects:  80% (185/231)   Receiving objects:  81% (188/231)   Receiving objects:  82% (190/231)   Receiving objects:  83% (192/231)   Receiving objects:  84% (195/231)   Receiving objects:  85% (197/231)   Receiving objects:  86% (199/231)   
+ DEBUG [3da39f25] 	Receiving objects:  87% (201/231)   
+ DEBUG [3da39f25] 	Receiving objects:  88% (204/231)   
+ DEBUG [3da39f25] 	Receiving objects:  89% (206/231)   Receiving objects:  90% (208/231)   
+ DEBUG [3da39f25] 	remote: Total 231 (delta 149), reused 141 (delta 125), pack-reused 52[K
+ DEBUG [3da39f25] 	Receiving objects:  91% (211/231)   Receiving objects:  92% (213/231)   Receiving objects:  93% (215/231)   Receiving objects:  94% (218/231)   Receiving objects:  95% (220/231)   Receiving objects:  96% (222/231)   Receiving objects:  97% (225/231)   Receiving objects:  98% (227/231)   Receiving objects:  99% (229/231)   Receiving objects: 100% (231/231)   Receiving objects: 100% (231/231), 494.31 KiB | 0 bytes/s, done.
+Resolving deltas:   0% (0/149)   
+ DEBUG [3da39f25] 	Resolving deltas:   6% (9/149)   Resolving deltas:  10% (15/149)   
+ DEBUG [3da39f25] 	Resolving deltas:  12% (18/149)   Resolving deltas:  14% (21/149)   Resolving deltas:  15% (23/149)   
+ DEBUG [3da39f25] 	Resolving deltas:  20% (31/149)   Resolving deltas:  22% (33/149)   Resolving deltas:  23% (35/149)   Resolving deltas:  24% (36/149)   Resolving deltas:  25% (38/149)   Resolving deltas:  26% (39/149)   Resolving deltas:  34% (51/149)   Resolving deltas:  35% (53/149)   Resolving deltas:  36% (54/149)   Resolving deltas:  47% (71/149)   Resolving deltas:  61% (92/149)   Resolving deltas:  62% (93/149)   Resolving deltas:  63% (95/149)   Resolving deltas:  64% (96/149)   Resolving deltas:  65% (97/149)   Resolving deltas:  66% (99/149)   Resolving deltas:  67% (100/149)   Resolving deltas:  68% (102/149)   Resolving deltas:  87% (131/149)   
+ DEBUG [3da39f25] 	Resolving deltas:  89% (133/149)   Resolving deltas:  90% (135/149)   Resolving deltas:  91% (136/149)   Resolving deltas:  92% (138/149)   Resolving deltas:  93% (139/149)   Resolving deltas:  94% (141/149)   Resolving deltas:  95% (142/149)   Resolving deltas:  96% (144/149)   Resolving deltas:  97% (145/149)   
+ DEBUG [3da39f25] 	Resolving deltas:  98% (147/149)   Resolving deltas:  99% (148/149)   Resolving deltas: 100% (149/149)   Resolving deltas: 100% (149/149), completed with 37 local objects.
+ DEBUG [3da39f25] 	From github.com:Fizziology/webdataconnector
+   2850454..5c3896e  master     -> master
+  INFO [3da39f25] Finished in 1.065 seconds with exit status 0 (successful).
+ DEBUG [9c77dd7d] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 54.211.3.191
+ DEBUG [9c77dd7d] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [9c77dd7d] Finished in 0.598 seconds with exit status 0 (successful).
+  INFO [c921a668] Running /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20191014154838 on 54.211.3.191
+ DEBUG [c921a668] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env mkdir -p /home/deploy/webdataconnector/releases/20191014154838 )
+  INFO [c921a668] Finished in 0.690 seconds with exit status 0 (successful).
+  INFO [dc21e017] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20191014154838 on 54.211.3.191
+ DEBUG [dc21e017] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /home/deploy/webdataconnector/releases/20191014154838 )
+  INFO [dc21e017] Finished in 0.716 seconds with exit status 0 (successful).
+ DEBUG [5b8b2d2d] Running if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi on 54.211.3.191
+ DEBUG [5b8b2d2d] Command: if test ! -d /home/deploy/webdataconnector/repo; then echo "Directory does not exist '/home/deploy/webdataconnector/repo'" 1>&2; false; fi
+ DEBUG [5b8b2d2d] Finished in 0.715 seconds with exit status 0 (successful).
+ DEBUG [aab6fc77] Running /usr/bin/env git rev-list --max-count=1 master on 54.211.3.191
+ DEBUG [aab6fc77] Command: cd /home/deploy/webdataconnector/repo && ( export GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-webdataconnector-production-cheryl.sh" ; /usr/bin/env git rev-list --max-count=1 master )
+ DEBUG [aab6fc77] 	5c3896ef439025a36205f819f0538927f6875148
+ DEBUG [aab6fc77] Finished in 0.657 seconds with exit status 0 (successful).
+ DEBUG [e5b24505] Running if test ! -d /home/deploy/webdataconnector/releases/20191014154838; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20191014154838'" 1>&2; false; fi on 54.211.3.191
+ DEBUG [e5b24505] Command: if test ! -d /home/deploy/webdataconnector/releases/20191014154838; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20191014154838'" 1>&2; false; fi
+ DEBUG [e5b24505] Finished in 0.675 seconds with exit status 0 (successful).
+  INFO [98beecf5] Running /usr/bin/env echo "5c3896ef439025a36205f819f0538927f6875148" >> REVISION on 54.211.3.191
+ DEBUG [98beecf5] Command: cd /home/deploy/webdataconnector/releases/20191014154838 && /usr/bin/env echo "5c3896ef439025a36205f819f0538927f6875148" >> REVISION
+  INFO [98beecf5] Finished in 0.714 seconds with exit status 0 (successful).
+ DEBUG [1fe443c4] Running if test ! -d /home/deploy/webdataconnector/releases/20191014154838; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20191014154838'" 1>&2; false; fi on 54.211.3.191
+ DEBUG [1fe443c4] Command: if test ! -d /home/deploy/webdataconnector/releases/20191014154838; then echo "Directory does not exist '/home/deploy/webdataconnector/releases/20191014154838'" 1>&2; false; fi
+ DEBUG [1fe443c4] Finished in 0.648 seconds with exit status 0 (successful).
+  INFO [c2b1729d] Running /usr/bin/env npm install --production --silent --no-progress on 54.211.3.191
+ DEBUG [c2b1729d] Command: cd /home/deploy/webdataconnector/releases/20191014154838 && /usr/bin/env npm install --production --silent --no-progress
+ DEBUG [c2b1729d] 	added 149 packages in 1.903s
+  INFO [c2b1729d] Finished in 3.037 seconds with exit status 0 (successful).
+  INFO [5f6861d1] Running /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20191014154838 /home/deploy/webdataconnector/releases/current on 54.211.3.191
+ DEBUG [5f6861d1] Command: /usr/bin/env ln -s /home/deploy/webdataconnector/releases/20191014154838 /home/deploy/webdataconnector/releases/current
+  INFO [5f6861d1] Finished in 0.612 seconds with exit status 0 (successful).
+  INFO [51e359a4] Running /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector on 54.211.3.191
+ DEBUG [51e359a4] Command: /usr/bin/env mv /home/deploy/webdataconnector/releases/current /home/deploy/webdataconnector
+  INFO [51e359a4] Finished in 0.717 seconds with exit status 0 (successful).
+ DEBUG [35df74ff] Running /usr/bin/env ls -x /home/deploy/webdataconnector/releases on 54.211.3.191
+ DEBUG [35df74ff] Command: /usr/bin/env ls -x /home/deploy/webdataconnector/releases
+ DEBUG [35df74ff] 	20190204153832	20190408185250	20190618151024	20191011182937	20191014154838
+ DEBUG [35df74ff] Finished in 0.716 seconds with exit status 0 (successful).
+  INFO Keeping 4 of 5 deployed releases on 54.211.3.191
+ DEBUG [d9040943] Running [ -d /home/deploy/webdataconnector/current ] on 54.211.3.191
+ DEBUG [d9040943] Command: [ -d /home/deploy/webdataconnector/current ]
+ DEBUG [d9040943] Finished in 0.715 seconds with exit status 0 (successful).
+ DEBUG [83c6832e] Running /usr/bin/env readlink /home/deploy/webdataconnector/current on 54.211.3.191
+ DEBUG [83c6832e] Command: /usr/bin/env readlink /home/deploy/webdataconnector/current
+ DEBUG [83c6832e] 	/home/deploy/webdataconnector/releases/20191014154838
+ DEBUG [83c6832e] Finished in 0.704 seconds with exit status 0 (successful).
+  INFO [adc6fccf] Running /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20190204153832 on 54.211.3.191
+ DEBUG [adc6fccf] Command: /usr/bin/env rm -rf /home/deploy/webdataconnector/releases/20190204153832
+  INFO [adc6fccf] Finished in 0.933 seconds with exit status 0 (successful).
+ DEBUG [cd5a68ca] Running if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi on 54.211.3.191
+ DEBUG [cd5a68ca] Command: if test ! -d /home/deploy/webdataconnector/releases; then echo "Directory does not exist '/home/deploy/webdataconnector/releases'" 1>&2; false; fi
+ DEBUG [cd5a68ca] Finished in 0.646 seconds with exit status 0 (successful).
+  INFO [c55e2fda] Running /usr/bin/env echo "Branch master (at 5c3896ef439025a36205f819f0538927f6875148) deployed as release 20191014154838 by cheryl" >> /home/deploy/webdataconnector/revisions.log on 54.211.3.191
+ DEBUG [c55e2fda] Command: cd /home/deploy/webdataconnector/releases && /usr/bin/env echo "Branch master (at 5c3896ef439025a36205f819f0538927f6875148) deployed as release 20191014154838 by cheryl" >> /home/deploy/webdataconnector/revisions.log
+  INFO [c55e2fda] Finished in 0.684 seconds with exit status 0 (successful).
+  INFO [9ea749c0] Running cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start on 54.211.3.191
+ DEBUG [9ea749c0] Command: cd /home/deploy/webdataconnector/current && pm2 start npm --name webdataconnector -- start
+ DEBUG [9ea749c0] 	[32m[PM2] [39mSpawning PM2 daemon with pm2_home=/home/deploy/.pm2
+ DEBUG [9ea749c0] 	[32m[PM2] [39mPM2 Successfully daemonized
+ DEBUG [9ea749c0] 	[32m[PM2] [39mStarting /home/deploy/.nvm/versions/node/v9.8.0/bin/npm in fork_mode (1 instance)
+ DEBUG [9ea749c0] 	[32m[PM2] [39mDone.
+ DEBUG [9ea749c0] 	[90m┌──────────────────┬──────┬────────┬───┬─────┬───────────┐[39m
+[90m│[39m[1m[36m Name             [39m[22m[90m│[39m[1m[36m mode [39m[22m[90m│[39m[1m[36m status [39m[22m[90m│[39m[1m[36m ↺ [39m[22m[90m│[39m[1m[36m cpu [39m[22m[90m│[39m[1m[36m memory    [39m[22m[90m│[39m
+[90m├──────────────────┼──────┼────────┼───┼─────┼───────────┤[39m
+[90m│[39m[1m[36m [1m[36mwebdataconnector[36m[1m [39m[22m[90m│[39m [7m[1mfork[22m[27m [90m│[39m [32m[1monline[22m[39m [90m│[39m 0 [90m│[39m 25% [90m│[39m 12.7 MB   [90m│[39m
+[90m└──────────────────┴──────┴────────┴───┴─────┴───────────┘[39m
+[37m[3m Use `pm2 show <id|name>` to get more details about an app[23m[39m
+  INFO [9ea749c0] Finished in 1.276 seconds with exit status 0 (successful).
