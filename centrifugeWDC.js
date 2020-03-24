@@ -95,7 +95,8 @@
 		var propertyTable = {
 			id: "centrifugeProperties",
 			alias: "Property information from Centrifuge",
-			columns: property_cols
+			columns: property_cols,
+			action: 'properties'
 		};
 
     var genre_cols = [{
@@ -114,7 +115,8 @@
 		var genreTable = {
 			id: "centrifugeGenres",
 			alias: "Genre information from Centrifuge",
-			columns: genre_cols
+			columns: genre_cols,
+			action: 'genres'
 		};
 
     var properties_genres_cols = [{
@@ -133,7 +135,8 @@
 		var propertiesGenresTable = {
 			id: "centrifugePropertiesGenres",
 			alias: "PropertiesGenres join table information from Centrifuge",
-			columns: properties_genres_cols
+			columns: properties_genres_cols,
+			action: 'properties_genres'
 		};
 
     var rule_cols = [{
@@ -264,10 +267,114 @@
 		var rulesTable = {
 			id: "centrifugeRules",
 			alias: "Rule information from Centrifuge",
-			columns: rule_cols
+			columns: rule_cols,
+			action: 'combined_rules'
 		};
 
-		schemaCallback([propertyTable, genreTable, propertiesGenresTable, rulesTable]);
+		var named_event_groups_cols = [{
+			id: "id",
+			alias: "id",
+			dataType: tableau.dataTypeEnum.int
+		}, {
+			id: "name",
+			alias: "name",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "tracker_id",
+			alias: "tracker_id",
+			dataType: tableau.dataTypeEnum.int
+		}];
+
+		var namedEventGroupsTable = {
+			id: "centrifugeNamedEventGroups",
+			alias: "Named Event Groups information from Centrifuge",
+			columns: named_event_groups_cols,
+			action: 'named_event_groups'
+		};
+
+		var named_event_types_cols = [{
+			id: "id",
+			alias: "id",
+			dataType: tableau.dataTypeEnum.int
+		}, {
+			id: "name",
+			alias: "name",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "description",
+			alias: "description",
+			dataType: tableau.dataTypeEnum.string
+		}, {
+			id: "range",
+			alias: "range",
+			dataType: tableau.dataTypeEnum.bool
+		}, {
+			id: "named_event_group_id",
+			alias: "named_event_group_id",
+			dataType: tableau.dataTypeEnum.int
+		}];
+
+		var namedEventTypesTable = {
+			id: "centrifugeNamedEventTypes",
+			alias: "Named Event Types information from Centrifuge",
+			columns: named_event_types_cols,
+			action: 'named_event_types'
+		};
+
+		var named_events_cols = [{
+			id: "id",
+			alias: "id",
+			dataType: tableau.dataTypeEnum.int
+		}, {
+			id: "named_event_type_id",
+			alias: "named_event_type_id",
+			dataType: tableau.dataTypeEnum.int
+		}, {
+			id: "property_id",
+			alias: "property_id",
+			dataType: tableau.dataTypeEnum.int
+		}, {
+			id: "from",
+			alias: "from",
+			dataType: tableau.dataTypeEnum.datetime
+		}, {
+			id: "to",
+			alias: "to",
+			dataType: tableau.dataTypeEnum.datetime
+		}];
+
+		var namedEventsTable = {
+			id: "centrifugeNamedEvents",
+			alias: "Named Events information from Centrifuge",
+			columns: named_events_cols,
+			action: 'named_events'
+		};
+
+		var trackers_cols = [{
+			id: "id",
+			alias: "id",
+			dataType: tableau.dataTypeEnum.int
+		}, {
+			id: "title",
+			alias: "title",
+			dataType: tableau.dataTypeEnum.string
+		}];
+
+		var trackersTable = {
+			id: "centrifugeTrackers",
+			alias: "Trackers information from Centrifuge",
+			columns: trackers_cols,
+			action: 'trackers'
+		};
+
+		schemaCallback([propertyTable, 
+										genreTable, 
+										propertiesGenresTable, 
+										rulesTable, 
+										namedEventGroupsTable, 
+										namedEventTypesTable, 
+										namedEventsTable, 
+										trackersTable]);
 
 	};
 
@@ -284,122 +391,208 @@
     //the WDC API calls the getData function once for each schema
     //Here we select which url to use for each schema
 
-    //var endpointUrl = "http://localhost:3030/api/tableau/"
-    var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
+    var endpointUrl = "http://localhost:3030/api/tableau/"
+    // var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
 
-    if (table.tableInfo.id == "centrifugeProperties") {
-      endpointUrl = endpointUrl + "properties"
-    } else if (table.tableInfo.id == "centrifugeGenres") {
-      endpointUrl = endpointUrl + "genres"
-    } else if (table.tableInfo.id == "centrifugePropertiesGenres") {
-      endpointUrl = endpointUrl + "properties_genres"
-    } else if (table.tableInfo.id == "centrifugeRules") {
-      endpointUrl = endpointUrl + "combined_rules"
-    }
-    tableau.log(endpointUrl);
+		// Unnecessary. We can just pass an action with the tableInfo
+		//
+    // if (table.tableInfo.id == "centrifugeProperties") {
+    //   endpointUrl = endpointUrl + "properties"
+    // } else if (table.tableInfo.id == "centrifugeGenres") {
+    //   endpointUrl = endpointUrl + "genres"
+    // } else if (table.tableInfo.id == "centrifugePropertiesGenres") {
+    //   endpointUrl = endpointUrl + "properties_genres"
+    // } else if (table.tableInfo.id == "centrifugeRules") {
+    //   endpointUrl = endpointUrl + "combined_rules"
+    // } else if (table.tableInfo.id == "centrifugeNamedEventGroups") {
+    //   endpointUrl = endpointUrl + "named_event_groups"
+    // } else if (table.tableInfo.id == "centrifugeNamedEventTypes") {
+    //   endpointUrl = endpointUrl + "named_event_types"
+    // } else if (table.tableInfo.id == "centrifugeNamedEvents") {
+    //   endpointUrl = endpointUrl + "named_events"
+    // } else if (table.tableInfo.id == "centrifugeTrackers") {
+    //   endpointUrl = endpointUrl + "trackers"
+		// }
+
+    tableau.log(`${endpointUrl = endpointUrl + table.tableInfo.action}`);
 
 		$.getJSON(endpointUrl, function(resp) {
 			var tableData = [];
       var i = 0;
 
 			// Iterate over each JSON object
-      if (table.tableInfo.id == "centrifugeGenres") {
-        tableau.log("genres response: ");
-        tableau.log(resp);
-			  var genres = resp.genres;
-        for (i = 0, len = genres.length; i < len; i++) {
-          tableData.push({
-            "id": genres[i].id,
-            "title": genres[i].title,
-            "category": genres[i].category
-          });
-        }
-      }
 
-      if (table.tableInfo.id == "centrifugePropertiesGenres") {
-        tableau.log("join response: ");
-        tableau.log(resp);
-			  var propertiesGenres = resp.properties_genres;
-        for (i = 0, len = propertiesGenres.length; i < len; i++) {
-          tableData.push({
-            "id": propertiesGenres[i].id,
-            "genre_id": propertiesGenres[i].genre_id,
-            "property_id": propertiesGenres[i].property_id
-          });
-        }
-      }
+			tableau.log(`${table.tableInfo.alias} response:\n${JSON.stringify(resp)}`)
 
-      if (table.tableInfo.id == "centrifugeProperties") {
-        tableau.log("properties response: ");
-        tableau.log(resp);
-			  var properties = resp.properties;
-        for (i = 0, len = properties.length; i < len; i++) {
-          tableData.push({
-            "id": properties[i].id,
-            "title": properties[i].title,
-            "vanity_title": properties[i].vanity_title,
-            "tag": properties[i].tag,
-            "active": properties[i].active,
-            "release_date": properties[i].release_date,
-            "box_office_opening": properties[i].box_office_opening,
-            "distributor": properties[i].distributor,
-            "rating": properties[i].rating,
-            "franchise": properties[i].franchise,
-            "installment": properties[i].installment,
-            "cast": properties[i].cast,
-            "adaptation": properties[i].adaptation,
-            "cinephile": properties[i].cinephile,
-            "oscar_nominee": properties[i].oscar_nominee,
-            "cinema_score_letter": properties[i].cinema_score_letter,
-            "cinema_score_number": properties[i].cinema_score_number,
-            "tracker_title": properties[i].tracker_title,
-            "created_at": properties[i].created_at,
-            "updated_at": properties[i].updated_at
-          });
-        }
+			//action same name as the response object key
+			var action_resp = resp[table.tableInfo.action];
+
+			//loop through response object, then loop through columns listed from tableInfo.columns[n].alias above
+			for (i=0; i < 2; i++) {
+				var tableDataObj = {}
+
+				table.tableInfo.columns.map(function(x) {
+					tableDataObj[x["id"]] = action_resp[i][x["id"]];
+				});
+
+				tableData.push(tableDataObj);
 			}
 
-      if (table.tableInfo.id == "centrifugeRules") {
-        tableau.log("rules response: ");
-        tableau.log(resp);
-			  var rules = resp.rules;
-        for (i = 0, len = rules.length; i < len; i++) {
-          tableData.push({
-            "id": rules[i].id,
-            "property_id": rules[i].property_id,
-            "gnip_id": rules[i].gnip_id,
-            "term": rules[i].term,
-            "username": rules[i].username,
-            "all": rules[i].all,
-            "any": rules[i].any,
-            "one": rules[i].one,
-            "none": rules[i].none,
-            "content_types": rules[i].content_types,
-            "object_type": rules[i].object_type,
-            "languages": rules[i].languages,
-            "language": rules[i].language,
-            "country": rules[i].country,
-            "pages": rules[i].pages,
-            "excluded_pages": rules[i].excluded_pages,
-            "post_type": rules[i].post_type,
-            "account": rules[i].account,
-            "keyword": rules[i].keyword,
-            "post_link": rules[i].post_link,
-            "subreddit": rules[i].subreddit,
-            "user": rules[i].user,
-            "domain": rules[i].domain,
-            "channel_id": rules[i].channel_id,
-            "playlist_id": rules[i].playlist_id,
-            "video_id": rules[i].video_id,
-            "keyword_query": rules[i].keyword_query,
-            "description": rules[i].description,
-            "kind": rules[i].kind,
-            "active": rules[i].active,
-            "created_at": rules[i].created_at
-          });
-        }
-      }
+			//Unnecessary. We're utilizing a more dynamic table creation above form the Cent API
+			// 
+      // if (table.tableInfo.id == "centrifugeGenres") {
+      //   tableau.log("genres response: ");
+      //   tableau.log(resp);
+			//   var genres = resp.genres;
+      //   for (i = 0, len = genres.length; i < len; i++) {
+      //     tableData.push({
+      //       "id": genres[i].id,
+      //       "title": genres[i].title,
+      //       "category": genres[i].category
+      //     });
+      //   }
+      // }
 
+      // if (table.tableInfo.id == "centrifugePropertiesGenres") {
+      //   tableau.log("join response: ");
+      //   tableau.log(resp);
+			//   var propertiesGenres = resp.properties_genres;
+      //   for (i = 0, len = propertiesGenres.length; i < len; i++) {
+      //     tableData.push({
+      //       "id": propertiesGenres[i].id,
+      //       "genre_id": propertiesGenres[i].genre_id,
+      //       "property_id": propertiesGenres[i].property_id
+      //     });
+      //   }
+      // }
+
+      // if (table.tableInfo.id == "centrifugeProperties") {
+      //   tableau.log("properties response: ");
+      //   tableau.log(resp);
+			//   var properties = resp.properties;
+      //   for (i = 0, len = properties.length; i < len; i++) {
+      //     tableData.push({
+      //       "id": properties[i].id,
+      //       "title": properties[i].title,
+      //       "vanity_title": properties[i].vanity_title,
+      //       "tag": properties[i].tag,
+      //       "active": properties[i].active,
+      //       "release_date": properties[i].release_date,
+      //       "box_office_opening": properties[i].box_office_opening,
+      //       "distributor": properties[i].distributor,
+      //       "rating": properties[i].rating,
+      //       "franchise": properties[i].franchise,
+      //       "installment": properties[i].installment,
+      //       "cast": properties[i].cast,
+      //       "adaptation": properties[i].adaptation,
+      //       "cinephile": properties[i].cinephile,
+      //       "oscar_nominee": properties[i].oscar_nominee,
+      //       "cinema_score_letter": properties[i].cinema_score_letter,
+      //       "cinema_score_number": properties[i].cinema_score_number,
+      //       "tracker_title": properties[i].tracker_title,
+      //       "created_at": properties[i].created_at,
+      //       "updated_at": properties[i].updated_at
+      //     });
+      //   }
+			// }
+
+      // if (table.tableInfo.id == "centrifugeRules") {
+      //   tableau.log("rules response: ");
+      //   tableau.log(resp);
+			//   var rules = resp.rules;
+      //   for (i = 0, len = rules.length; i < len; i++) {
+      //     tableData.push({
+      //       "id": rules[i].id,
+      //       "property_id": rules[i].property_id,
+      //       "gnip_id": rules[i].gnip_id,
+      //       "term": rules[i].term,
+      //       "username": rules[i].username,
+      //       "all": rules[i].all,
+      //       "any": rules[i].any,
+      //       "one": rules[i].one,
+      //       "none": rules[i].none,
+      //       "content_types": rules[i].content_types,
+      //       "object_type": rules[i].object_type,
+      //       "languages": rules[i].languages,
+      //       "language": rules[i].language,
+      //       "country": rules[i].country,
+      //       "pages": rules[i].pages,
+      //       "excluded_pages": rules[i].excluded_pages,
+      //       "post_type": rules[i].post_type,
+      //       "account": rules[i].account,
+      //       "keyword": rules[i].keyword,
+      //       "post_link": rules[i].post_link,
+      //       "subreddit": rules[i].subreddit,
+      //       "user": rules[i].user,
+      //       "domain": rules[i].domain,
+      //       "channel_id": rules[i].channel_id,
+      //       "playlist_id": rules[i].playlist_id,
+      //       "video_id": rules[i].video_id,
+      //       "keyword_query": rules[i].keyword_query,
+      //       "description": rules[i].description,
+      //       "kind": rules[i].kind,
+      //       "active": rules[i].active,
+      //       "created_at": rules[i].created_at
+      //     });
+      //   }
+      // }
+			
+			// if (table.tableInfo.id == "centrifugeNamedEventGroups") {
+      //   tableau.log("join response: ");
+      //   tableau.log(resp);
+			//   var namedEventGroups = resp.named_event_groups;
+      //   for (i = 0, len = namedEventGroups.length; i < len; i++) {
+      //     tableData.push({
+      //       "id": namedEventGroups[i].id,
+      //       "name": namedEventGroups[i].name,
+      //       "tracker_id": namedEventGroups[i].tracker_id
+      //     });
+			// 	}
+				
+			// }
+
+			// if (table.tableInfo.id == "centrifugeNamedEventTypes") {
+      //   tableau.log("join response: ");
+      //   tableau.log(resp);
+			//   var namedEventTypes = resp.named_event_types;
+      //   for (i = 0, len = namedEventTypes.length; i < len; i++) {
+      //     tableData.push({
+      //       "id": namedEventTypes[i].id,
+      //       "name": namedEventTypes[i].name,
+			// 			"description": namedEventTypes[i].description,
+			// 			"range": namedEventTypes[i].range,
+			// 			"named_event_group_id": namedEventTypes[i].named_event_group_id
+      //     });
+      //   }
+			// }
+
+			// if (table.tableInfo.id == "centrifugeNamedEvents") {
+      //   tableau.log("join response: ");
+      //   tableau.log(resp);
+			//   var namedEvents = resp.named_events;
+      //   for (i = 0, len = namedEvents.length; i < len; i++) {
+      //     tableData.push({
+      //       "id": namedEvents[i].id,
+      //       "named_event_type_id": namedEvents[i].named_event_type_id,
+			// 			"property_id": namedEvents[i].property_id,
+			// 			"from": namedEvents[i].from,
+			// 			"to": namedEvents[i].to
+      //     });
+      //   }
+			// }
+			
+			// if (table.tableInfo.id == "centrifugeTrackers") {
+      //   tableau.log("join response: ");
+      //   tableau.log(resp);
+			//   var trackers = resp.trackers;
+      //   for (i = 0, len = 2; i < len; i++) {
+      //     tableData.push({
+      //       "id": trackers[i].id,
+      //       "title": trackers[i].title
+      //     });
+      //   }
+			// }
+			
 			table.appendRows(tableData);
 			doneCallback();
 		});
@@ -412,7 +605,7 @@
       tableau.log("submitButton function");
 			tableau.connectionName = "Fizz Centrifuge Feed";
       var email = $('#email')[0].value;
-      var token = $('#token')[0].value;
+			var token = $('#token')[0].value;
       tableau.username = btoa(email + ":" + token);
 			tableau.submit();
 		});
