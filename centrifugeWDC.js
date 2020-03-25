@@ -451,7 +451,7 @@
 			var action_resp = resp[response_key];
 
 			//loop through response object, then loop through columns listed from tableInfo.columns[n].alias above
-			for (i=0; i < 2; i++) {
+			for (i=0; i < action_resp.length; i++) {
 				var tableDataObj = {}
 
 				table.tableInfo.columns.map(function(x) {
