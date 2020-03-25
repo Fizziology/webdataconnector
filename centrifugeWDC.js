@@ -413,16 +413,18 @@
     // } else if (table.tableInfo.id == "centrifugeTrackers") {
     //   endpointUrl = endpointUrl + "trackers"
 		// }
-
-    tableau.log(`${endpointUrl = endpointUrl + table.tableInfo.action}`);
+		
+		endpointUrl = endpointUrl + table.tableInfo.action
+    tableau.log(endpointUrl);
 
 		$.getJSON(endpointUrl, function(resp) {
 			var tableData = [];
       var i = 0;
 
 			// Iterate over each JSON object
-
-			tableau.log(`${table.tableInfo.alias} response:\n${JSON.stringify(resp)}`)
+			table_alias_name = table.tableInfo.alias
+			tableau.log(table_alias_name + " response:\n")
+			tableau.log(JSON.stringify(resp))
 
 			//action same name as the response object key
 			var action_resp = resp[table.tableInfo.action];
