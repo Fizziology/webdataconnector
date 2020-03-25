@@ -393,28 +393,48 @@
 
     // var endpointUrl = "http://localhost:3030/api/tableau/"
     var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
+		var response_key = ""
 
-		// Unnecessary. We can just pass an action with the tableInfo
-		//
-    // if (table.tableInfo.id == "centrifugeProperties") {
-    //   endpointUrl = endpointUrl + "properties"
-    // } else if (table.tableInfo.id == "centrifugeGenres") {
-    //   endpointUrl = endpointUrl + "genres"
-    // } else if (table.tableInfo.id == "centrifugePropertiesGenres") {
-    //   endpointUrl = endpointUrl + "properties_genres"
-    // } else if (table.tableInfo.id == "centrifugeRules") {
-    //   endpointUrl = endpointUrl + "combined_rules"
-    // } else if (table.tableInfo.id == "centrifugeNamedEventGroups") {
-    //   endpointUrl = endpointUrl + "named_event_groups"
-    // } else if (table.tableInfo.id == "centrifugeNamedEventTypes") {
-    //   endpointUrl = endpointUrl + "named_event_types"
-    // } else if (table.tableInfo.id == "centrifugeNamedEvents") {
-    //   endpointUrl = endpointUrl + "named_events"
-    // } else if (table.tableInfo.id == "centrifugeTrackers") {
-    //   endpointUrl = endpointUrl + "trackers"
-		// }
+		switch(table.tableInfo.id) {
+			case "centrifugeProperties":
+				response_key = "properties";
+				endpointUrl = endpointUrl + "properties";
+				break;
+			case "centrifugeGenres":
+				response_key = "genres";
+				endpointUrl = endpointUrl + "genres";
+				break;
+			case "centrifugePropertiesGenres":
+				response_key = "properties_genres";
+				endpointUrl = endpointUrl + "properties_genres";
+				break;
+			case "centrifugeRules":
+				response_key = "combined_rules";
+				endpointUrl = endpointUrl + "combined_rules";
+				break;
+			case "centrifugeNamedEventGroups":
+				response_key = "named_event_groups";
+				endpointUrl = endpointUrl + "named_event_groups";
+				break;
+			case "centrifugeNamedEventTypes":
+				response_key = "named_event_types";
+				endpointUrl = endpointUrl + "named_event_types";
+				break;
+			case "centrifugeNamedEvents":
+				response_key = "named_events";
+				endpointUrl = endpointUrl + "named_events";
+				break;
+			case "centrifugeTrackers":
+				response_key = "trackers";
+				endpointUrl = endpointUrl + "trackers"
+				break;
+			default:
+				tableau.log('something went wrong while trying to set up the Centrfigue tableau endpoint URl');
+
+		}
 		
-		endpointUrl = endpointUrl + table.tableInfo.action
+		// Tableau not able to read the action attribute for some reason. Replaced with switch statement above
+		// endpointUrl = endpointUrl + table.tableInfo.action
     tableau.log(endpointUrl);
 
 		$.getJSON(endpointUrl, function(resp) {
@@ -427,7 +447,8 @@
 			tableau.log(JSON.stringify(resp))
 
 			//action same name as the response object key
-			var action_resp = resp[table.tableInfo.action];
+			// var action_resp = resp[table.tableInfo.action];
+			var action_resp = resp[response_key];
 
 			//loop through response object, then loop through columns listed from tableInfo.columns[n].alias above
 			for (i=0; i < 2; i++) {
