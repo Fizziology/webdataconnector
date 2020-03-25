@@ -95,8 +95,7 @@
 		var propertyTable = {
 			id: "centrifugeProperties",
 			alias: "Property information from Centrifuge",
-			columns: property_cols,
-			action: 'properties'
+			columns: property_cols
 		};
 
     var genre_cols = [{
@@ -115,8 +114,7 @@
 		var genreTable = {
 			id: "centrifugeGenres",
 			alias: "Genre information from Centrifuge",
-			columns: genre_cols,
-			action: 'genres'
+			columns: genre_cols
 		};
 
     var properties_genres_cols = [{
@@ -135,8 +133,7 @@
 		var propertiesGenresTable = {
 			id: "centrifugePropertiesGenres",
 			alias: "PropertiesGenres join table information from Centrifuge",
-			columns: properties_genres_cols,
-			action: 'properties_genres'
+			columns: properties_genres_cols
 		};
 
     var rule_cols = [{
@@ -267,8 +264,7 @@
 		var rulesTable = {
 			id: "centrifugeRules",
 			alias: "Rule information from Centrifuge",
-			columns: rule_cols,
-			action: 'combined_rules'
+			columns: rule_cols
 		};
 
 		var named_event_groups_cols = [{
@@ -288,8 +284,7 @@
 		var namedEventGroupsTable = {
 			id: "centrifugeNamedEventGroups",
 			alias: "Named Event Groups information from Centrifuge",
-			columns: named_event_groups_cols,
-			action: 'named_event_groups'
+			columns: named_event_groups_cols
 		};
 
 		var named_event_types_cols = [{
@@ -317,8 +312,7 @@
 		var namedEventTypesTable = {
 			id: "centrifugeNamedEventTypes",
 			alias: "Named Event Types information from Centrifuge",
-			columns: named_event_types_cols,
-			action: 'named_event_types'
+			columns: named_event_types_cols
 		};
 
 		var named_events_cols = [{
@@ -346,8 +340,7 @@
 		var namedEventsTable = {
 			id: "centrifugeNamedEvents",
 			alias: "Named Events information from Centrifuge",
-			columns: named_events_cols,
-			action: 'named_events'
+			columns: named_events_cols
 		};
 
 		var trackers_cols = [{
@@ -363,8 +356,7 @@
 		var trackersTable = {
 			id: "centrifugeTrackers",
 			alias: "Trackers information from Centrifuge",
-			columns: trackers_cols,
-			action: 'trackers'
+			columns: trackers_cols
 		};
 
 		schemaCallback([propertyTable, 
