@@ -92,8 +92,15 @@
 			dataType: tableau.dataTypeEnum.datetime
 		}];
 
+		/*
+			{
+				id: //Integer: id is just a unique identifier for each table schema
+				alias: //String: User friendly name for the schema to display in Tableau
+				columns: //Array: An array of columns to use for the table schema with their associated datatype
+			}
+		*/
 		var propertyTable = {
-			id: "centrifugeProperties",
+			id: "properties",
 			alias: "Property information from Centrifuge",
 			columns: property_cols
 		};
@@ -112,7 +119,7 @@
     }];
 
 		var genreTable = {
-			id: "centrifugeGenres",
+			id: "genres",
 			alias: "Genre information from Centrifuge",
 			columns: genre_cols
 		};
@@ -131,7 +138,7 @@
     }];
 
 		var propertiesGenresTable = {
-			id: "centrifugePropertiesGenres",
+			id: "properties_genres",
 			alias: "PropertiesGenres join table information from Centrifuge",
 			columns: properties_genres_cols
 		};
@@ -262,7 +269,7 @@
     }];
 
 		var rulesTable = {
-			id: "centrifugeRules",
+			id: "combined_rules",
 			alias: "Rule information from Centrifuge",
 			columns: rule_cols
 		};
@@ -282,7 +289,7 @@
 		}];
 
 		var namedEventGroupsTable = {
-			id: "centrifugeNamedEventGroups",
+			id: "named_event_groups",
 			alias: "Named Event Groups information from Centrifuge",
 			columns: named_event_groups_cols
 		};
@@ -310,7 +317,7 @@
 		}];
 
 		var namedEventTypesTable = {
-			id: "centrifugeNamedEventTypes",
+			id: "named_event_types",
 			alias: "Named Event Types information from Centrifuge",
 			columns: named_event_types_cols
 		};
@@ -338,7 +345,7 @@
 		}];
 
 		var namedEventsTable = {
-			id: "centrifugeNamedEvents",
+			id: "named_events",
 			alias: "Named Events information from Centrifuge",
 			columns: named_events_cols
 		};
@@ -354,7 +361,7 @@
 		}];
 
 		var trackersTable = {
-			id: "centrifugeTrackers",
+			id: "trackers",
 			alias: "Trackers information from Centrifuge",
 			columns: trackers_cols
 		};
@@ -387,46 +394,46 @@
     var endpointUrl = "https://centrifuge.fizziology.com/api/tableau/"
 		var response_key = ""
 
-		switch(table.tableInfo.id) {
-			case "centrifugeProperties":
-				response_key = "properties";
-				endpointUrl = endpointUrl + "properties";
-				break;
-			case "centrifugeGenres":
-				response_key = "genres";
-				endpointUrl = endpointUrl + "genres";
-				break;
-			case "centrifugePropertiesGenres":
-				response_key = "properties_genres";
-				endpointUrl = endpointUrl + "properties_genres";
-				break;
-			case "centrifugeRules":
-				response_key = "combined_rules";
-				endpointUrl = endpointUrl + "combined_rules";
-				break;
-			case "centrifugeNamedEventGroups":
-				response_key = "named_event_groups";
-				endpointUrl = endpointUrl + "named_event_groups";
-				break;
-			case "centrifugeNamedEventTypes":
-				response_key = "named_event_types";
-				endpointUrl = endpointUrl + "named_event_types";
-				break;
-			case "centrifugeNamedEvents":
-				response_key = "named_events";
-				endpointUrl = endpointUrl + "named_events";
-				break;
-			case "centrifugeTrackers":
-				response_key = "trackers";
-				endpointUrl = endpointUrl + "trackers"
-				break;
-			default:
-				tableau.log('something went wrong while trying to set up the Centrfigue tableau endpoint URl');
+		// switch(table.tableInfo.id) {
+		// 	case "centrifugeProperties":
+		// 		response_key = "properties";
+		// 		endpointUrl = endpointUrl + "properties";
+		// 		break;
+		// 	case "centrifugeGenres":
+		// 		response_key = "genres";
+		// 		endpointUrl = endpointUrl + "genres";
+		// 		break;
+		// 	case "centrifugePropertiesGenres":
+		// 		response_key = "properties_genres";
+		// 		endpointUrl = endpointUrl + "properties_genres";
+		// 		break;
+		// 	case "centrifugeRules":
+		// 		response_key = "combined_rules";
+		// 		endpointUrl = endpointUrl + "combined_rules";
+		// 		break;
+		// 	case "centrifugeNamedEventGroups":
+		// 		response_key = "named_event_groups";
+		// 		endpointUrl = endpointUrl + "named_event_groups";
+		// 		break;
+		// 	case "centrifugeNamedEventTypes":
+		// 		response_key = "named_event_types";
+		// 		endpointUrl = endpointUrl + "named_event_types";
+		// 		break;
+		// 	case "centrifugeNamedEvents":
+		// 		response_key = "named_events";
+		// 		endpointUrl = endpointUrl + "named_events";
+		// 		break;
+		// 	case "centrifugeTrackers":
+		// 		response_key = "trackers";
+		// 		endpointUrl = endpointUrl + "trackers"
+		// 		break;
+		// 	default:
+		// 		tableau.log('something went wrong while trying to set up the Centrfigue tableau endpoint URl');
 
-		}
+		// }
 		
-		// Tableau not able to read the action attribute for some reason. Replaced with switch statement above
-		// endpointUrl = endpointUrl + table.tableInfo.action
+		// use id property for the action
+		endpointUrl = endpointUrl + table.tableInfo.id 
     tableau.log(endpointUrl);
 
 		$.getJSON(endpointUrl, function(resp) {
@@ -439,8 +446,8 @@
 			tableau.log(JSON.stringify(resp))
 
 			//action same name as the response object key
-			// var action_resp = resp[table.tableInfo.action];
-			var action_resp = resp[response_key];
+			var action_resp = resp[table.tableInfo.id];
+			// var action_resp = resp[response_key];
 
 			//loop through response object, then loop through columns listed from tableInfo.columns[n].alias above
 			for (i=0; i < action_resp.length; i++) {
