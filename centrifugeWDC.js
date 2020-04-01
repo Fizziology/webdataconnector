@@ -453,9 +453,10 @@
 			for (i=0; i < action_resp.length; i++) {
 				var tableDataObj = {}
 
-				table.tableInfo.columns.map(function(x) {
-					tableDataObj[x["id"]] = action_resp[i][x["id"]];
-				});
+				let columns = table.tableInfo.columns
+				for(colIndex=0; colIndex < table.tableInfo.columns.length; colIndex++){
+					tableDataObj[columns[colIndex]["id"]] = action_resp[i][columns[colIndex]["id"]]
+				}
 
 				tableData.push(tableDataObj);
 			}
