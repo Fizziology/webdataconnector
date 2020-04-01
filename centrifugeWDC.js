@@ -39,7 +39,7 @@
 			alias: "box_office_opening",
 			dataType: tableau.dataTypeEnum.float
 		}, {
-			id: "over_the_top",
+			id: "over_the_top", 
 			alias: "ott",
 			dataType: tableau.dataTypeEnum.int
 		}, {
