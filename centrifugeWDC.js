@@ -13,7 +13,7 @@
 
 		var property_cols = [{
 			id: "id",
-			dataType: tableau.dataTypeEnum.int
+			dataType: tableau.dataTypeEnum.bool
 		}, {
 			id: "title",
 			alias: "Slug Title",
