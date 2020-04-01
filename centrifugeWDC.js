@@ -41,7 +41,7 @@
 		}, {
 			id: "over_the_top", 
 			alias: "ott",
-			dataType: tableau.dataTypeEnum.int
+			dataType: tableau.dataTypeEnum.bool
 		}, {
 			id: "distributor",
 			alias: "distributor",
