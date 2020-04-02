@@ -13,7 +13,7 @@
 
 		var property_cols = [{
 			id: "id",
-			dataType: tableau.dataTypeEnum.int
+			dataType: tableau.dataTypeEnum.bool
 		}, {
 			id: "title",
 			alias: "Slug Title",
@@ -38,6 +38,10 @@
 			id: "box_office_opening",
 			alias: "box_office_opening",
 			dataType: tableau.dataTypeEnum.float
+		}, {
+			id: "over_the_top", 
+			alias: "ott",
+			dataType: tableau.dataTypeEnum.bool
 		}, {
 			id: "distributor",
 			alias: "distributor",
